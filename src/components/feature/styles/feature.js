@@ -32,13 +32,7 @@ export const Panel = styled.div`
 	}
 `;
 
-export const Title = styled.h1`
-	font-size: 3rem;
-
-	@media (max-width: 600px) {
-		font-size: 2rem;
-	}
-`;
+export const Title = styled.h1``;
 
 export const Description = styled.h2`
 	font-weight: 600;
