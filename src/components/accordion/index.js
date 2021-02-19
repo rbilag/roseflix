@@ -6,7 +6,7 @@ import { Container, Inner, Item, Header, Title, Body } from './styles/accordion'
 const AccordionContext = createContext(-1);
 
 function Accordion({ children, ...restProps }) {
-	const [ selected, setSelected ] = useState();
+	const [ selected, setSelected ] = useState(-1);
 	return (
 		<AccordionContext.Provider value={{ selected, setSelected }}>
 			<Container {...restProps}>
@@ -15,9 +15,11 @@ function Accordion({ children, ...restProps }) {
 		</AccordionContext.Provider>
 	);
 }
+
 Accordion.Title = function AccordionTitle({ children, ...restProps }) {
 	return <Title {...restProps}>{children}</Title>;
 };
+
 Accordion.Item = function AccordionItem({ children, id, ...restProps }) {
 	const { selected, setSelected } = useContext(AccordionContext);
 	return (
@@ -26,6 +28,7 @@ Accordion.Item = function AccordionItem({ children, id, ...restProps }) {
 		</Item>
 	);
 };
+
 Accordion.Header = function AccordionHeader({ children, id, ...restProps }) {
 	const { selected } = useContext(AccordionContext);
 	return (
@@ -35,6 +38,7 @@ Accordion.Header = function AccordionHeader({ children, id, ...restProps }) {
 		</Header>
 	);
 };
+
 Accordion.Body = function AccordionBody({ children, id, ...restProps }) {
 	const { selected } = useContext(AccordionContext);
 	return (

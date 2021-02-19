@@ -1,6 +1,7 @@
 import React from 'react';
 import { Accordion } from '../components';
 import faqs from '../fixtures/faqs.json';
+import SubscribeContainer from './subscribe';
 
 function FaqsContainer() {
 	return (
@@ -12,6 +13,7 @@ function FaqsContainer() {
 					<Accordion.Body id={id}>{body}</Accordion.Body>
 				</Accordion.Item>
 			))}
+			<SubscribeContainer />
 		</Accordion>
 	);
 }

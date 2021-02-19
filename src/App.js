@@ -1,13 +1,16 @@
-import FeatureContainer from './containers/feature';
-import FooterContainer from './containers/footer';
-import FaqsContainer from './containers/faqs';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { ROUTES } from './constants/routes';
 
 function App() {
 	return (
-		<div className="App">
-			<FeatureContainer />
-			<FaqsContainer />
-			<FooterContainer />
+		<div className="app">
+			<Router>
+				{ROUTES.map(({ path, page }) => (
+					<Route exact path={path} key={path}>
+						{page}
+					</Route>
+				))}
+			</Router>
 		</div>
 	);
 }

@@ -35,7 +35,7 @@ export const Panel = styled.div`
 export const Title = styled.h1``;
 
 export const Description = styled.h2`
-	font-weight: 600;
+	font-weight: 500;
 
 	@media (max-width: 600px) {
 		font-size: 1.3rem;

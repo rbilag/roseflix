@@ -1,6 +1,9 @@
 import styled from 'styled-components/macro';
 
-export const Container = styled.div`color: #fff;`;
+export const Container = styled.div`
+	color: #fff;
+	border-bottom: 0.5rem solid #222;
+`;
 
 export const Title = styled.h1`
 	text-align: center;
