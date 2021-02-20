@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../components';
+import { ROUTES } from '../constants/routes';
 
-function HeaderContainer() {
+function HeaderContainer({ logoOnly }) {
 	// TODO make context
 	const isLoggedIn = false;
 	const [ isShown, handleShown ] = useState(false);
@@ -27,6 +28,7 @@ function HeaderContainer() {
 					className={!isLoggedIn ? 'large' : ''}
 					src="/images/branding/Netflix_Logo_RGB.png"
 					alt="Roseflix Logo"
+					to={ROUTES.HOME.path}
 				/>
 				{isLoggedIn && (
 					<Header.Nav>
@@ -38,11 +40,12 @@ function HeaderContainer() {
 				)}
 			</Header.Panel>
 
-			{isLoggedIn ? (
-				<Header.Avatar src="/images/avatars/User_Avatar.png" alt="Roseflix Logo" />
-			) : (
-				<Header.Button>Sign in</Header.Button>
-			)}
+			{!logoOnly &&
+				(isLoggedIn ? (
+					<Header.Avatar src="/images/avatars/User_Avatar.png" alt="User Avatar" />
+				) : (
+					<Header.Button to={ROUTES.SIGNIN.path}>Sign in</Header.Button>
+				))}
 		</Header>
 	);
 }

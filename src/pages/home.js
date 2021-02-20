@@ -1,19 +1,15 @@
 import React from 'react';
-import BannerContainer from '../containers/banner';
-import FaqsContainer from '../containers/faqs';
-import FeatureContainer from '../containers/feature';
-import FooterContainer from '../containers/footer';
-import HeaderContainer from '../containers/header';
+import { BannerContainer, FaqsContainer, FeatureContainer, FooterContainer, HeaderContainer } from '../containers';
 
 function Home() {
 	return (
-		<div className="home">
+		<React.Fragment>
 			<HeaderContainer />
 			<BannerContainer />
 			<FeatureContainer />
 			<FaqsContainer />
 			<FooterContainer />
-		</div>
+		</React.Fragment>
 	);
 }
 

@@ -43,10 +43,16 @@ export const Button = styled.button`
 	border: none;
 	cursor: pointer;
 	border-radius: 0 0.25rem 0.25rem 0;
+	transition: all 0.1s ease-in;
+
+	&:hover {
+		background-color: #9c151c;
+	}
 
 	.MuiSvgIcon-root {
 		font-size: 1.15rem;
 	}
+
 	@media (max-width: 600px) {
 		font-size: 1.15rem;
 		.MuiSvgIcon-root {

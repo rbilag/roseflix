@@ -4,3 +4,4 @@ export { default as Accordion } from './accordion';
 export { default as Subscribe } from './subscribe';
 export { default as Header } from './header';
 export { default as Banner } from './banner';
+export { default as Form } from './form';

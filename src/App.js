@@ -1,17 +1,18 @@
+import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ROUTES } from './constants/routes';
 
 function App() {
 	return (
-		<div className="app">
+		<React.Fragment>
 			<Router>
-				{ROUTES.map(({ path, page }) => (
-					<Route exact path={path} key={path}>
-						{page}
+				{Object.keys(ROUTES).map((key) => (
+					<Route exact path={ROUTES[key].path} key={key}>
+						{ROUTES[key].page}
 					</Route>
 				))}
 			</Router>
-		</div>
+		</React.Fragment>
 	);
 }
 

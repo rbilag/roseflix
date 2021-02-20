@@ -47,6 +47,7 @@ export const Logo = styled.img`
 	width: 8rem;
 	margin: 0.5rem 2rem 0.5rem 3rem;
 	object-fit: contain;
+	cursor: pointer;
 
 	&.large {
 		width: 13rem;
@@ -85,4 +86,9 @@ export const Button = styled.button`
 	border: none;
 	cursor: pointer;
 	border-radius: 0.25rem;
+	transition: all 0.1s ease-in;
+
+	&:hover {
+		background-color: #9c151c;
+	}
 `;
