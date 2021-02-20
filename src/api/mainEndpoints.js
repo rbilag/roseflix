@@ -11,6 +11,17 @@ const signup = async (data) => {
 	});
 };
 
+const checkAvailability = async (data) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const response = await axios.post('/users/checkAvailability', data);
+			resolve(response.data);
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
 const signin = async (data) => {
 	return new Promise(async (resolve, reject) => {
 		try {
@@ -24,7 +35,8 @@ const signin = async (data) => {
 
 const mainHttp = {
 	signup,
-	signin
+	signin,
+	checkAvailability
 };
 
 export default mainHttp;

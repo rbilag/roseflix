@@ -33,13 +33,8 @@ Form.TextSmall = function FormTextSmall({ children, ...restProps }) {
 	return <TextSmall {...restProps}>{children}</TextSmall>;
 };
 
-Form.Link = function FormLink({ to, children, ...restProps }) {
-	const history = useHistory();
-	return (
-		<Link onClick={() => history.push(to)} {...restProps}>
-			{children}
-		</Link>
-	);
+Form.Link = function FormLink({ children, ...restProps }) {
+	return <Link {...restProps}>{children}</Link>;
 };
 
 Form.Error = function FormError({ children, ...restProps }) {

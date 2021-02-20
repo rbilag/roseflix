@@ -7,23 +7,29 @@ import mainHttp from '../api/mainEndpoints';
 
 function Signin() {
 	const history = useHistory();
-	const [ email, setEmail ] = useState();
-	const [ password, setPassword ] = useState();
+	const [ email, setEmail ] = useState('');
+	const [ password, setPassword ] = useState('');
 	const [ errorMsg, setErrorMsg ] = useState('');
-	const passwordInvalid = password === '' || (password && password.length < 4);
-	const emailInvalid = email === '';
+	const [ isTouched, setIsTouched ] = useState({ email: false, password: false });
+	const [ isLoading, setIsLoading ] = useState(false);
+	const emailInvalid = isTouched.email && email === '';
+	const passwordInvalid = isTouched.password && password === '';
+	const canProceed = password && email && !passwordInvalid && !emailInvalid;
 
 	const handleSignin = (e) => {
 		e.preventDefault();
-		if (!passwordInvalid && !emailInvalid) {
+		setIsLoading(true);
+		if (canProceed) {
 			mainHttp
 				.signin({ email, password })
 				.then(({ authorization, data }) => {
+					setIsLoading(false);
 					localStorage.setItem('roseflix-auth', authorization);
 					localStorage.setItem('roseflix-user', JSON.stringify(data.userDetails));
 					history.push(ROUTES.BROWSE.path);
 				})
 				.catch(({ response }) => {
+					setIsLoading(false);
 					console.log(response.data);
 					setErrorMsg(response.data.message);
 				});
@@ -40,21 +46,33 @@ function Signin() {
 					<Form.Input
 						placeholder="Email or phone number"
 						value={email}
-						onChange={({ target }) => setEmail(target.value)}
+						onChange={({ target }) => {
+							if (!isTouched.email)
+								setIsTouched((prevIsTouched) => {
+									return { ...prevIsTouched, email: true };
+								});
+							setEmail(target.value);
+						}}
 						className={emailInvalid ? 'has-error' : ''}
 					/>
-					{emailInvalid && <Form.Error>Please enter a valid email.</Form.Error>}
+					{emailInvalid && <Form.Error>Please enter your email or phone number.</Form.Error>}
 					<Form.Input
 						type="password"
 						placeholder="Password"
 						autoComplete="off"
 						value={password}
-						onChange={({ target }) => setPassword(target.value)}
+						onChange={({ target }) => {
+							if (!isTouched.password)
+								setIsTouched((prevIsTouched) => {
+									return { ...prevIsTouched, password: true };
+								});
+							setPassword(target.value);
+						}}
 						className={passwordInvalid ? 'has-error' : ''}
 					/>
-					{passwordInvalid && <Form.Error>Your password must contain between 4 and 60 characters.</Form.Error>}
-					<Form.Button disabled={!password || !email || passwordInvalid || emailInvalid} type="submit">
-						Sign In
+					{passwordInvalid && <Form.Error>Please enter your password.</Form.Error>}
+					<Form.Button disabled={!canProceed || isLoading} type="submit">
+						{isLoading ? 'Signing in...' : 'Sign In'}
 					</Form.Button>
 				</Form.FormGroup>
 				<Form.Text>
