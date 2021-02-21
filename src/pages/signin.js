@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Form } from '../components';
 import { ROUTES } from '../constants/routes';
 import { FooterContainer, HeaderContainer } from '../containers';
 import mainHttp from '../api/mainEndpoints';
+import { useUser } from '../context/UserContext';
 
 function Signin() {
-	const history = useHistory();
+	const { setUserDetails } = useUser();
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const [ errorMsg, setErrorMsg ] = useState('');
@@ -26,7 +26,7 @@ function Signin() {
 					setIsLoading(false);
 					localStorage.setItem('roseflix-auth', authorization);
 					localStorage.setItem('roseflix-user', JSON.stringify(data.userDetails));
-					history.push(ROUTES.BROWSE.path);
+					setUserDetails(data.userDetails);
 				})
 				.catch(({ response }) => {
 					setIsLoading(false);

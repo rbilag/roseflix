@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { debounce } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Form } from '../components';
 import { ROUTES } from '../constants/routes';
 import { FooterContainer, HeaderContainer } from '../containers';
@@ -8,7 +8,8 @@ import mainHttp from '../api/mainEndpoints';
 
 function Signup() {
 	const history = useHistory();
-	const [ email, setEmail ] = useState('');
+	const location = useLocation();
+	const [ email, setEmail ] = useState(location.state || '');
 	const [ phone, setPhone ] = useState('');
 	const [ name, setName ] = useState('');
 	const [ password, setPassword ] = useState('');
