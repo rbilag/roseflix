@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../components';
 import { ROUTES } from '../constants/routes';
+import { useUser } from '../context/UserContext';
 
 function HeaderContainer({ logoOnly }) {
-	// TODO make context
-	const isLoggedIn = false;
+	const { userDetails } = useUser();
 	const [ isShown, handleShown ] = useState(false);
 
 	useEffect(() => {
@@ -25,12 +25,13 @@ function HeaderContainer({ logoOnly }) {
 		<Header className={isShown ? 'opaque' : ''}>
 			<Header.Panel>
 				<Header.Logo
-					className={!isLoggedIn ? 'large' : ''}
+					className={!userDetails ? 'large' : ''}
 					src="/images/branding/Netflix_Logo_RGB.png"
 					alt="Roseflix Logo"
 					to={ROUTES.HOME.path}
 				/>
-				{isLoggedIn && (
+				{!logoOnly &&
+				userDetails && (
 					<Header.Nav>
 						<Header.NavLink href="#">Home</Header.NavLink>
 						<Header.NavLink href="#">Browse</Header.NavLink>
@@ -41,8 +42,8 @@ function HeaderContainer({ logoOnly }) {
 			</Header.Panel>
 
 			{!logoOnly &&
-				(isLoggedIn ? (
-					<Header.Avatar src="/images/avatars/User_Avatar.png" alt="User Avatar" />
+				(userDetails ? (
+					<Header.Avatar src={`/images/avatars/${userDetails.profiles[0].avatar}`} alt="User Avatar" />
 				) : (
 					<Header.Button to={ROUTES.SIGNIN.path}>Sign in</Header.Button>
 				))}
