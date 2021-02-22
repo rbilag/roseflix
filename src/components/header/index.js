@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, Panel, Nav, NavLink, Logo, Avatar, Button } from './styles/header';
+import { Container, Panel, Nav, NavLink, Logo, Avatar, Button, Dropdown, Menu, MenuOption } from './styles/header';
 
 function Header({ children, ...restProps }) {
 	return <Container {...restProps}>{children}</Container>;
@@ -38,6 +38,23 @@ Header.Button = function HeaderButton({ children, to, ...restProps }) {
 
 Header.NavLink = function HeaderNavLink({ children, ...restProps }) {
 	return <NavLink {...restProps}>{children}</NavLink>;
+};
+
+Header.Dropdown = function HeaderDropdown({ children, ...restProps }) {
+	return <Dropdown {...restProps}>{children}</Dropdown>;
+};
+
+Header.Menu = function HeaderMenu({ children, ...restProps }) {
+	return <Menu {...restProps}>{children}</Menu>;
+};
+
+Header.MenuOption = function HeaderMenuOption({ profile, ...restProps }) {
+	return (
+		<MenuOption {...restProps}>
+			<Avatar src={`/images/avatars/${profile.avatar}`} alt={`${profile.name} Avatar`} isOption />
+			{profile.name}
+		</MenuOption>
+	);
 };
 
 export default Header;

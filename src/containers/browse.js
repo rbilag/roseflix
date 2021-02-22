@@ -12,10 +12,11 @@ function BrowseContainer() {
 
 	useEffect(
 		() => {
+			setLoading(true);
 			console.log(profile);
 			setTimeout(() => {
 				setLoading(false);
-			}, 3000);
+			}, 1000);
 			return () => {
 				clearTimeout();
 			};
@@ -25,8 +26,8 @@ function BrowseContainer() {
 	return profile ? (
 		<React.Fragment>
 			{loading ? <Loading src={profile.avatar} /> : <Loading.ReleaseBody />}
-			<HeaderContainer profile={profile} />
-			<HeroContainer />
+			<HeaderContainer profile={profile} setProfile={setProfile} />
+			<HeroContainer profile={profile} />
 		</React.Fragment>
 	) : (
 		<ProfilesContainer userDetails={userDetails} setProfile={setProfile} />

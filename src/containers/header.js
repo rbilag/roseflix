@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import SearchIcon from '@material-ui/icons/Search';
 import { Header } from '../components';
 import { ROUTES } from '../constants/routes';
 import { useUser } from '../context/UserContext';
 
-function HeaderContainer({ logoOnly, profile }) {
+function HeaderContainer({ logoOnly, profile, setProfile }) {
 	const { userDetails } = useUser();
 	const [ isShown, handleShown ] = useState(false);
 
@@ -34,19 +35,30 @@ function HeaderContainer({ logoOnly, profile }) {
 				userDetails && (
 					<Header.Nav>
 						<Header.NavLink href="#">Home</Header.NavLink>
-						<Header.NavLink href="#">Browse</Header.NavLink>
-						<Header.NavLink href="#">My List</Header.NavLink>
-						<Header.NavLink href="#">Browse</Header.NavLink>
+						<Header.NavLink href="#">TV Shows</Header.NavLink>
+						<Header.NavLink href="#">Movies</Header.NavLink>
+						<Header.NavLink href="#">New &amp; Popular</Header.NavLink>
 					</Header.Nav>
 				)}
 			</Header.Panel>
-
-			{!logoOnly &&
-				(userDetails ? (
-					<Header.Avatar src={`/images/avatars/${profile.avatar}`} alt="User Avatar" />
-				) : (
-					<Header.Button to={ROUTES.SIGNIN.path}>Sign in</Header.Button>
-				))}
+			<Header.Panel>
+				{!logoOnly &&
+					(userDetails ? (
+						<React.Fragment>
+							<SearchIcon />
+							<Header.Dropdown>
+								<Header.Avatar src={`/images/avatars/${profile.avatar}`} alt="User Avatar" />
+								<Header.Menu>
+									{userDetails.profiles.map((profile) => (
+										<Header.MenuOption profile={profile} onClick={() => setProfile(profile)} />
+									))}
+								</Header.Menu>
+							</Header.Dropdown>
+						</React.Fragment>
+					) : (
+						<Header.Button to={ROUTES.SIGNIN.path}>Sign in</Header.Button>
+					))}
+			</Header.Panel>
 		</Header>
 	);
 }

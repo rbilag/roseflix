@@ -17,7 +17,16 @@ export const Container = styled.div`
 	}
 `;
 
-export const Panel = styled.div`display: flex;`;
+export const Panel = styled.div`
+	display: flex;
+	align-items: center;
+
+	.MuiSvgIcon-root {
+		font-size: 1.75rem;
+		color: #fff;
+		cursor: pointer;
+	}
+`;
 export const Nav = styled.div`
 	display: inline-block;
 	font-size: 0.85rem;
@@ -65,17 +74,6 @@ export const Logo = styled.img`
 	}
 `;
 
-export const Avatar = styled.img`
-	width: 2.25rem;
-	border-radius: 0.25rem;
-	margin: 1rem 3.5rem;
-	object-fit: contain;
-
-	@media (max-width: 700px) {
-		margin: 0.5rem 1rem;
-	}
-`;
-
 export const Button = styled.button`
 	background-color: #e50914;
 	color: #fff;
@@ -90,5 +88,56 @@ export const Button = styled.button`
 
 	&:hover {
 		background-color: #9c151c;
+	}
+`;
+
+export const Menu = styled.div`
+	opacity: 0;
+	pointer-events: none;
+	z-index: -1;
+	position: absolute;
+	top: 3.1rem;
+	right: 3.5rem;
+	background: rgba(0, 0, 0, 0.75);
+	color: #fff;
+	font-size: 0.8rem;
+	border: 1px solid #69696979;
+	min-width: 10rem;
+	padding: 0.75rem 0;
+	transition: all 0.1s ease-in;
+
+	&:hover {
+		opacity: 1;
+		pointer-events: auto;
+	}
+`;
+
+export const MenuOption = styled.div`
+	display: flex;
+	place-items: center;
+	padding: 0.1rem 0.25rem;
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
+`;
+export const Avatar = styled.img`
+	width: 2.25rem;
+	border-radius: 0.25rem;
+	margin: ${({ isOption }) => (isOption ? '0.25rem 0.5rem' : '0')};
+	object-fit: contain;
+
+	@media (max-width: 700px) {
+		margin: 0 1rem 0 0.5rem;
+	}
+`;
+export const Dropdown = styled.div`
+	margin: 0 3.5rem 0 1.5rem;
+	cursor: pointer;
+	&:hover {
+		${Menu} {
+			${({ isOption }) => !isOption && `opacity: 1; pointer-events: auto;`};
+		}
 	}
 `;

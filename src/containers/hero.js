@@ -5,7 +5,7 @@ import Hero from '../components/hero';
 import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
 
-function HeroContainer() {
+function HeroContainer({ profile }) {
 	const [ banner, setBanner ] = useState({});
 	const [ heroTrailer, setHeroTrailer ] = useState();
 	const [ isMuted, setIsMuted ] = useState(true);
@@ -33,7 +33,7 @@ function HeroContainer() {
 			}
 			fetchData();
 		},
-		[ isMobile ]
+		[ isMobile, profile ]
 	);
 
 	const truncate = (string, length) => {
