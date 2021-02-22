@@ -3,7 +3,7 @@ import { Header } from '../components';
 import { ROUTES } from '../constants/routes';
 import { useUser } from '../context/UserContext';
 
-function HeaderContainer({ logoOnly }) {
+function HeaderContainer({ logoOnly, profile }) {
 	const { userDetails } = useUser();
 	const [ isShown, handleShown ] = useState(false);
 
@@ -43,7 +43,7 @@ function HeaderContainer({ logoOnly }) {
 
 			{!logoOnly &&
 				(userDetails ? (
-					<Header.Avatar src={`/images/avatars/${userDetails.profiles[0].avatar}`} alt="User Avatar" />
+					<Header.Avatar src={`/images/avatars/${profile.avatar}`} alt="User Avatar" />
 				) : (
 					<Header.Button to={ROUTES.SIGNIN.path}>Sign in</Header.Button>
 				))}
