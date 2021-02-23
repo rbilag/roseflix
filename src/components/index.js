@@ -8,3 +8,5 @@ export { default as Form } from './form';
 export { default as Profiles } from './profiles';
 export { default as Loading } from './loading';
 export { default as Mute } from './mute';
+export { default as Hero } from './hero';
+export { default as Show } from './show';

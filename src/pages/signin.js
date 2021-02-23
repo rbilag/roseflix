@@ -30,7 +30,6 @@ function Signin() {
 				})
 				.catch(({ response }) => {
 					setIsLoading(false);
-					console.log(response.data);
 					setErrorMsg(response.data.message);
 				});
 		}

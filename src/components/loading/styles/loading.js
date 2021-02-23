@@ -6,9 +6,17 @@ export const LockBody = createGlobalStyle`
   }
 `;
 export const ReleaseBody = createGlobalStyle`
+	html {
+		background-color: #141414;
+	}
   body {
     overflow: visible;
+		color: #fff;
+		background-color: #141414;
   }
+	* {
+    margin: 0;
+	}
 `;
 export const Spinner = styled.div`
 	position: fixed;

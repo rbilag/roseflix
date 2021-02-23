@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import Hero from '../components/hero';
+import { Hero } from '../components';
 import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
 
@@ -17,7 +17,6 @@ function HeroContainer({ profile }) {
 				const response = await movieHttp.get(SECTIONS.series.general[4].endpoint);
 				const bannerDetails = response.data.results[Math.floor(Math.random() * response.data.results.length)];
 				setBanner(bannerDetails);
-				console.log(isMobile);
 				if (!isMobile) {
 					const trailerResponse = await movieHttp.get(
 						SECTIONS.series.helpers.fetchTVVideos.replace('{{tv_id}}', bannerDetails.id)
@@ -26,7 +25,6 @@ function HeroContainer({ profile }) {
 						const trailerDetails = trailerResponse.data.results
 							.reverse()
 							.find((video) => video.site === 'YouTube' && video.type === 'Trailer');
-						console.log(trailerDetails);
 						if (trailerDetails) setHeroTrailer(trailerDetails.key);
 					}
 				}
@@ -51,6 +49,7 @@ function HeroContainer({ profile }) {
 				/>
 			)}
 			{banner.backdrop_path && !heroTrailer && <Hero.Banner src={banner.backdrop_path} />}
+			<Hero.Overlay fullOverlay={!heroTrailer} />
 			{banner.overview && (
 				<Hero.Details className={heroTrailer ? 'no-desc' : ''}>
 					<Hero.Title className={!heroTrailer ? 'title-small' : ''}>
@@ -65,7 +64,6 @@ function HeroContainer({ profile }) {
 					</Hero.Button>
 				</Hero.Details>
 			)}
-			<Hero.Overlay fullOverlay={!heroTrailer} />
 		</Hero>
 	);
 }

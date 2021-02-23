@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 export const Container = styled.div`
 	color: #fff;
-	/* background-color: #141414; */
+	z-index: 0;
 `;
 export const Overlay = styled.div`
 	position: absolute;
@@ -73,6 +73,7 @@ export const Banner = styled.div`
 	background-size: cover;
 	background: ${({ src }) =>
 		`linear-gradient(rgba(20,20,20,0) 60%, rgba(20,20,20,0.95)), url("https://image.tmdb.org/t/p/original/${src}") center`};
+	z-index: 0;
 
 	@media (max-width: 1000px) {
 		height: 50vh;

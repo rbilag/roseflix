@@ -50,7 +50,11 @@ function HeaderContainer({ logoOnly, profile, setProfile }) {
 								<Header.Avatar src={`/images/avatars/${profile.avatar}`} alt="User Avatar" />
 								<Header.Menu>
 									{userDetails.profiles.map((profile) => (
-										<Header.MenuOption profile={profile} onClick={() => setProfile(profile)} />
+										<Header.MenuOption
+											key={`${profile._id}_option`}
+											profile={profile}
+											onClick={() => setProfile(profile)}
+										/>
 									))}
 								</Header.Menu>
 							</Header.Dropdown>

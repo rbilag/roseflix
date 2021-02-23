@@ -8,7 +8,7 @@ function Hero({ children, ...restProps }) {
 	return <Container {...restProps}>{children}</Container>;
 }
 
-Hero.Video = function HeroVideo({ children, isMuted, setIsMuted, heroTrailer, setHeroTrailer, ...restProps }) {
+Hero.Video = function HeroVideo({ isMuted, setIsMuted, heroTrailer, setHeroTrailer, ...restProps }) {
 	return (
 		<Video {...restProps}>
 			<ReactPlayer

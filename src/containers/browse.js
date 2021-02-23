@@ -4,11 +4,13 @@ import { useUser } from '../context/UserContext';
 import HeaderContainer from './header';
 import HeroContainer from './hero';
 import ProfilesContainer from './profiles';
+import SectionsContainer from './sections';
 
 function BrowseContainer() {
 	const { userDetails } = useUser();
 	const [ profile, setProfile ] = useState();
 	const [ loading, setLoading ] = useState(true);
+	const [ category, setCategory ] = useState('all');
 
 	useEffect(
 		() => {
@@ -23,11 +25,13 @@ function BrowseContainer() {
 		},
 		[ profile ]
 	);
+
 	return profile ? (
 		<React.Fragment>
 			{loading ? <Loading src={profile.avatar} /> : <Loading.ReleaseBody />}
 			<HeaderContainer profile={profile} setProfile={setProfile} />
 			<HeroContainer profile={profile} />
+			<SectionsContainer category={category} />
 		</React.Fragment>
 	) : (
 		<ProfilesContainer userDetails={userDetails} setProfile={setProfile} />
