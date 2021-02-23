@@ -1,7 +1,12 @@
 import styled from 'styled-components/macro';
 
-export const Sections = styled.div`position: absolute;`;
-export const Poster = styled.img`border-radius: 0.35rem 0.35rem 0.35rem 0.35rem;`;
+export const Sections = styled.div`
+	position: absolute;
+	width: calc(100vw - 1.04rem);
+	left: 0;
+	right: 0;
+`;
+export const Poster = styled.img`border-radius: 0.35rem;`;
 export const Container = styled.div`
 	margin-top: -10rem;
 	margin-bottom: 2rem;
@@ -10,6 +15,21 @@ export const Container = styled.div`
 		font-size: 1.75rem;
 		color: #fff;
 		font-weight: bold;
+	}
+	@media (max-width: 1000px) {
+		margin-top: -5rem;
+		margin-bottom: 0;
+		h2 {
+			font-size: 1rem;
+		}
+	}
+	@media (max-width: 600px) {
+		margin-top: 0;
+		margin-bottom: 0;
+		h2 {
+			font-size: 0.9rem;
+			padding: 0 1.5rem 0;
+		}
 	}
 `;
 export const Card = styled.div`
@@ -28,6 +48,15 @@ export const Video = styled.div`
 		width: 285px;
 		opacity: 1;
 		border-radius: 0.35rem 0.35rem 0 0;
+
+		@media (max-width: 1000px) {
+			height: 130px;
+			width: 227.219px;
+		}
+		@media (max-width: 600px) {
+			height: 96px;
+			width: 170.406px;
+		}
 	}
 	.trailer-video {
 		pointer-events: none;
@@ -39,6 +68,14 @@ export const Video = styled.div`
 			width: 285px;
 			pointer-events: none;
 			border-radius: 0.35rem 0.35rem 0 0;
+			@media (max-width: 1000px) {
+				height: 132px;
+				width: 227.219px;
+			}
+			@media (max-width: 600px) {
+				height: 98px;
+				width: 170.406px;
+			}
 		}
 		iframe {
 			position: absolute;
@@ -50,6 +87,14 @@ export const Video = styled.div`
 			z-index: -1;
 			transform: translate(-50%, -55%);
 			border-radius: 0.35rem 0.35rem 0 0;
+			@media (max-width: 1000px) {
+				height: 220px;
+				width: 390.219px;
+			}
+			@media (max-width: 600px) {
+				height: 186px;
+				width: 227.4px;
+			}
 		}
 	}
 `;
@@ -64,6 +109,11 @@ export const Details = styled.div`
 	font-size: 0.75rem;
 	* {
 		display: none;
+	}
+	@media (max-width: 600px) {
+		br {
+			display: none !important;
+		}
 	}
 `;
 export const CardContainer = styled.div`
@@ -87,12 +137,26 @@ export const CardContainer = styled.div`
 			* {
 				display: inline-block;
 			}
+			@media (max-width: 1000px) {
+				width: calc(100% - 1rem);
+				padding: 0.5rem 0.5rem 0.25rem;
+			}
+			@media (max-width: 600px) {
+				padding: 0.25rem 0.5rem 0.25rem;
+			}
 		}
 
 		${Card} {
 			position: absolute;
 			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.75), 0 6px 6px rgba(0, 0, 0, 0.5);
 			/* box-shadow: 0 19px 38px rgb(0 0 0 / 30%), 0 15px 12px rgb(0 0 0 / 22%); */
+		}
+
+		@media (max-width: 1000px) {
+			margin-right: 14.45rem;
+		}
+		@media (max-width: 600px) {
+			margin-right: 10.9rem;
 		}
 	}
 `;
@@ -107,26 +171,37 @@ export const Row = styled.div`
 	&::-webkit-scrollbar {
 		display: none;
 	}
+	@media (max-width: 1000px) {
+		padding: 8rem 0 7rem 2.75rem;
+	}
+	@media (max-width: 600px) {
+		padding: 8rem 0 3rem 1.5rem;
+	}
 
 	&.md-container {
-		/* padding: 8rem 0 13.5rem 3.5rem; */
-
 		${CardContainer} {
 			&:hover {
 				${Card} {
 					transform: scale(1.35);
+				}
+				${Details} {
+					box-shadow: 0 10px 20px rgba(0, 0, 0, 0.75), 0 6px 6px rgba(0, 0, 0, 0.5);
 				}
 			}
 		}
 
 		${Poster} {
 			max-height: 10rem;
+			@media (max-width: 1000px) {
+				max-height: 8rem;
+			}
+			@media (max-width: 600px) {
+				max-height: 6rem;
+			}
 		}
 	}
 
 	&.lg-container {
-		padding: 8rem 0 13.5rem 3.5rem;
-
 		${CardContainer} {
 			max-height: 30rem;
 			padding-bottom: 1rem;
@@ -135,32 +210,77 @@ export const Row = styled.div`
 				${Card} {
 					transform: scale(1.2);
 				}
+				@media (max-width: 1000px) {
+					margin-right: 14.42rem;
+				}
+				@media (max-width: 600px) {
+					margin-right: 10.92rem;
+				}
 			}
 		}
 		${Video} {
 			&.trailer-visible {
 				height: 450px;
 				width: 300px;
+				border-radius: 0.35rem;
+				@media (max-width: 1000px) {
+					height: 340px;
+					width: 226.656px;
+				}
+				@media (max-width: 600px) {
+					height: 256px;
+					width: 170.656px;
+				}
 			}
 			.trailer-video {
 				> div {
 					height: 450px;
 					width: 300px;
+					border-radius: 0.35rem;
+					@media (max-width: 1000px) {
+						height: 340px;
+						width: 226.656px;
+					}
+					@media (max-width: 600px) {
+						height: 256px;
+						width: 170.656px;
+					}
 				}
 				iframe {
 					height: 650px;
 					width: 900px;
 					transform: translate(-50%, -50%);
+					border-radius: 0.35rem;
+					@media (max-width: 1000px) {
+						height: 540px;
+						width: 826.656px;
+					}
+					@media (max-width: 600px) {
+						height: 456px;
+						width: 770.656px;
+					}
 				}
 			}
 		}
 		${Poster} {
 			max-height: 28rem;
+			@media (max-width: 1000px) {
+				max-height: 21.25rem;
+			}
+			@media (max-width: 600px) {
+				max-height: 16rem;
+			}
 		}
 		${Details} {
 			margin-top: -4.5rem;
 			background: none;
 			background: linear-gradient(rgba(20, 20, 20, 0), rgba(20, 20, 20, 1));
+			@media (max-width: 1000px) {
+				margin-top: -2.5rem;
+			}
+			@media (max-width: 600px) {
+				margin-top: -1.25rem;
+			}
 		}
 		.volume-btn {
 			top: 1rem;
@@ -170,6 +290,12 @@ export const Row = styled.div`
 export const Title = styled.h3`
 	font-weight: 600;
 	font-size: 1.1rem;
+	@media (max-width: 1000px) {
+		font-size: 0.75rem;
+	}
+	@media (max-width: 600px) {
+		font-size: 0.65rem;
+	}
 `;
 export const Rating = styled.p`
 	margin: 0.25rem 0;
@@ -179,6 +305,12 @@ export const Rating = styled.p`
 		font-weight: 800;
 		margin-right: 0.5rem;
 	}
+	@media (max-width: 1000px) {
+		font-size: 0.5rem;
+	}
+	@media (max-width: 600px) {
+		display: none !important;
+	}
 `;
 export const Genre = styled.span`
 	font-size: 0.8rem;
@@ -187,5 +319,14 @@ export const Genre = styled.span`
 		font-weight: bold;
 		margin: 0.5rem;
 		opacity: 0.5;
+	}
+	@media (max-width: 1000px) {
+		font-size: 0.6rem;
+		.genre-dot {
+			margin: 0 0.35rem 0.25rem;
+		}
+	}
+	@media (max-width: 600px) {
+		display: none !important;
 	}
 `;

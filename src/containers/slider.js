@@ -3,7 +3,7 @@ import movieHttp from '../api/movie';
 import { Show } from '../components';
 import ShowContainer from './show';
 
-function SliderContainer({ section, mediaType, genres, trailerDisplayed, onUpdateTrailer }) {
+function SliderContainer({ section, category, genres, trailerDisplayed, onUpdateTrailer }) {
 	const [ shows, setShows ] = useState([]);
 
 	useEffect(
@@ -19,14 +19,13 @@ function SliderContainer({ section, mediaType, genres, trailerDisplayed, onUpdat
 				<h2>{section.title}</h2>
 				<Show.Row className={`${section.size || 'md'}-container`}>
 					{shows.map((show) => {
-						const mediaType = 'movie';
 						return (
 							<ShowContainer
 								key={show.id}
 								show={show}
 								trailerDisplayed={trailerDisplayed}
 								section={section}
-								mediaType={mediaType}
+								category={category}
 								genres={genres}
 								onUpdateTrailer={onUpdateTrailer}
 							/>

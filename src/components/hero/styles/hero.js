@@ -8,7 +8,7 @@ export const Overlay = styled.div`
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: calc(100vw - 1.04rem);
 	height: 100vh;
 	z-index: 0;
 	background: ${({ fullOverlay }) =>
@@ -23,7 +23,7 @@ export const Overlay = styled.div`
 	}
 `;
 export const Video = styled.div`
-	width: 100vw;
+	width: calc(100vw - 1.04rem);
 	height: 100vh;
 	z-index: -99;
 
@@ -34,7 +34,7 @@ export const Video = styled.div`
 		> div {
 			position: relative;
 			overflow: hidden;
-			width: 100vw;
+			width: calc(100vw - 1.04rem);
 			height: 115vh;
 			z-index: 0;
 			pointer-events: none;
@@ -43,7 +43,7 @@ export const Video = styled.div`
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				width: 100vw;
+				width: calc(100vw - 1.04rem);
 				height: 115vh;
 				pointer-events: none;
 				z-index: 0;
@@ -68,7 +68,7 @@ export const Video = styled.div`
 	}
 `;
 export const Banner = styled.div`
-	width: 100vw;
+	width: calc(100vw - 1.04rem);
 	height: 100vh;
 	background-size: cover;
 	background: ${({ src }) =>

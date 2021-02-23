@@ -10,7 +10,7 @@ function BrowseContainer() {
 	const { userDetails } = useUser();
 	const [ profile, setProfile ] = useState();
 	const [ loading, setLoading ] = useState(true);
-	const [ category, setCategory ] = useState('all');
+	const [ category, setCategory ] = useState('series');
 
 	useEffect(
 		() => {
@@ -29,8 +29,8 @@ function BrowseContainer() {
 	return profile ? (
 		<React.Fragment>
 			{loading ? <Loading src={profile.avatar} /> : <Loading.ReleaseBody />}
-			<HeaderContainer profile={profile} setProfile={setProfile} />
-			<HeroContainer profile={profile} />
+			<HeaderContainer profile={profile} setProfile={setProfile} category={category} setCategory={setCategory} />
+			<HeroContainer profile={profile} category={category} />
 			<SectionsContainer category={category} />
 		</React.Fragment>
 	) : (

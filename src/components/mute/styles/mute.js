@@ -15,6 +15,22 @@ export const Container = styled.div`
 		padding: 0.5rem;
 	}
 
+	@media (max-width: 1000px) {
+		top: calc(128px - 2rem);
+		right: 0.5rem;
+		width: 1.5rem;
+		height: 1.5rem;
+		.MuiSvgIcon-root {
+			font-size: 0.75rem;
+			padding: 0.38rem;
+		}
+	}
+
+	@media (max-width: 600px) {
+		top: calc(96px - 1.75rem);
+		right: 0.25rem;
+	}
+
 	&:hover {
 		color: #fff;
 		border: 1px solid #fff;

@@ -6,18 +6,19 @@ import { SECTIONS } from '../api/movieEndpoints';
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/';
 
-function ShowContainer({ section, mediaType, genres, trailerDisplayed, onUpdateTrailer, show }) {
+function ShowContainer({ section, category, genres, trailerDisplayed, onUpdateTrailer, show }) {
 	const [ isMuted, setIsMuted ] = useState(true);
 	const showPoster =
 		(trailerDisplayed.id === show.id && trailerDisplayed.header !== section.title) || trailerDisplayed.id !== show.id;
 	const playerRef = React.createRef();
 
-	const handleMovieHover = async () => {
+	const handleShowHover = async () => {
 		try {
-			let response;
-			if (mediaType === 'movie')
-				response = await movieHttp.get(SECTIONS.movies.helpers.fetchMovieVideos.replace('{{movie_id}}', show.id));
-			else response = await movieHttp.get(SECTIONS.series.helpers.fetchTVVideos.replace('{{tv_id}}', show.id));
+			const endpoint =
+				category === 'series'
+					? SECTIONS.series.helpers.fetchTVVideos.replace('{{tv_id}}', show.id)
+					: SECTIONS.movies.helpers.fetchMovieVideos.replace('{{movie_id}}', show.id);
+			let response = await movieHttp.get(endpoint);
 			const trailerDetails = response.data.results
 				.reverse()
 				.find((video) => video.site === 'YouTube' && video.type === 'Trailer');
@@ -46,7 +47,7 @@ function ShowContainer({ section, mediaType, genres, trailerDisplayed, onUpdateT
 
 	return (
 		<Show>
-			<Show.Card onMouseEnter={debounce(handleMovieHover)} onMouseLeave={() => onUpdateTrailer({})}>
+			<Show.Card onMouseEnter={debounce(handleShowHover)} onMouseLeave={() => onUpdateTrailer({})}>
 				{!showPoster &&
 				trailerDisplayed.url && (
 					<Show.Video

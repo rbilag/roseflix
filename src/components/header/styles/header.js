@@ -20,12 +20,6 @@ export const Container = styled.div`
 export const Panel = styled.div`
 	display: flex;
 	align-items: center;
-
-	.MuiSvgIcon-root {
-		font-size: 1.75rem;
-		color: #fff;
-		cursor: pointer;
-	}
 `;
 export const Nav = styled.div`
 	display: inline-block;
@@ -37,11 +31,33 @@ export const Nav = styled.div`
 	}
 `;
 
+export const Search = styled.div`
+	display: flex;
+	align-items: center;
+
+	.MuiSvgIcon-root {
+		font-size: 1.5rem;
+		color: #fff;
+		cursor: pointer;
+	}
+`;
+export const SearchInput = styled.input`
+	background-color: #141414;
+	border: ${({ isActive }) => (isActive ? '1px solid #fff' : 'none')};
+	padding: ${({ isActive }) => (isActive ? '0.45rem 0.5rem' : '0')};
+	width: ${({ isActive }) => (isActive ? '15rem' : '0')};
+	font-size: 0.9rem;
+	color: #fff;
+	outline: none;
+	transition: all 0.25s ease-out;
+`;
 export const NavLink = styled.a`
 	color: #fff;
 	text-decoration: none;
 	margin: 0 0.75rem;
 	transition: color .4s;
+	cursor: pointer;
+	font-weight: ${({ isSelected }) => (isSelected ? 800 : 400)};
 
 	&:hover {
 		color: #b3b3b3;
@@ -120,6 +136,11 @@ export const MenuOption = styled.div`
 
 	&:hover {
 		text-decoration: underline;
+	}
+
+	&.no-img {
+		font-weight: 600;
+		padding: 0.75rem;
 	}
 `;
 export const Avatar = styled.img`

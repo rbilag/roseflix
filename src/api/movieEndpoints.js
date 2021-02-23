@@ -2,13 +2,9 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const SECTIONS = {
 	movies: {
-		general: [
+		sections: [
 			{ title: 'Trending', endpoint: `/trending/movie/week?api_key=${API_KEY}` },
 			{ title: 'Popular', endpoint: `/movie/popular?api_key=${API_KEY}` },
-			{ title: 'Top Rated', endpoint: `/movie/top_rated?api_key=${API_KEY}` },
-			{ title: 'Upcoming', endpoint: `/movie/upcoming?api_key=${API_KEY}` }
-		],
-		genres: [
 			// { title: 'Action', endpoint: `/discover/movie?api_key=${API_KEY}&with_genres=28` },
 			{ title: 'Adventure', endpoint: `/discover/movie?api_key=${API_KEY}&with_genres=12` },
 			// { title: 'Animation', endpoint: `/discover/movie?api_key=${API_KEY}&with_genres=16` },
@@ -17,7 +13,8 @@ export const SECTIONS = {
 			// { title: 'Documentary', endpoint: `/discover/movie?api_key=${API_KEY}&with_genres=99` },
 			// { title: 'Drama', endpoint: `/discover/movie?api_key=${API_KEY}&with_genres=18` },
 			// { title: 'Family', endpoint: `/discover/movie?api_key=${API_KEY}&with_genres=10751` },
-			{ title: 'Fantasy', endpoint: `/discover/movie?api_key=${API_KEY}&with_genres=14` }
+			{ title: 'Fantasy', endpoint: `/discover/movie?api_key=${API_KEY}&with_genres=14` },
+			{ title: 'Netflix Original', endpoint: `/discover/movie?api_key=${API_KEY}&with_networks=213`, size: 'lg' }
 			// { title: 'History', endpoint: `/discover/movie?api_key=${API_KEY}&with_genres=36` },
 			// { title: 'Horror', endpoint: `/discover/movie?api_key=${API_KEY}&with_genres=27` },
 			// { title: 'Music', endpoint: `/discover/movie?api_key=${API_KEY}&with_genres=10402` },
@@ -36,19 +33,15 @@ export const SECTIONS = {
 		}
 	},
 	series: {
-		general: [
+		sections: [
 			{ title: 'Trending', endpoint: `/trending/tv/week?api_key=${API_KEY}` },
 			{ title: 'Popular', endpoint: `/tv/popular?api_key=${API_KEY}` },
-			{ title: 'Top Rated', endpoint: `/tv/top_rated?api_key=${API_KEY}` },
-			{ title: 'Latest', endpoint: `/tv/latest?api_key=${API_KEY}` },
-			{ title: 'Netflix Original', endpoint: `/discover/tv?api_key=${API_KEY}&with_networks=213`, size: 'lg' }
-		],
-		genres: [
 			// { title: 'Action Adventure', endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=10759` },
 			// { title: 'Animation', endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=16` },
 			{ title: 'Comedy', endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=35` },
 			// { title: 'Crime', endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=80` },
-			{ title: 'Documentary', endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=99` }
+			{ title: 'Documentary', endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=99` },
+			{ title: 'Netflix Original', endpoint: `/discover/tv?api_key=${API_KEY}&with_networks=213`, size: 'lg' }
 			// { title: 'Drama', endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=18` },
 			// { title: 'Family', endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=10751` },
 			// { title: 'Kids', endpoint: `/discover/tv?api_key=${API_KEY}&with_genres=10762` },

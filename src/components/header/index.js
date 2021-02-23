@@ -1,6 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, Panel, Nav, NavLink, Logo, Avatar, Button, Dropdown, Menu, MenuOption } from './styles/header';
+import SearchIcon from '@material-ui/icons/Search';
+import {
+	Container,
+	Panel,
+	Nav,
+	NavLink,
+	Logo,
+	Avatar,
+	Button,
+	Dropdown,
+	Menu,
+	MenuOption,
+	Search,
+	SearchInput
+} from './styles/header';
 
 function Header({ children, ...restProps }) {
 	return <Container {...restProps}>{children}</Container>;
@@ -21,6 +35,21 @@ Header.NavLink = function HeaderNavLink({ children, ...restProps }) {
 Header.Logo = function HeaderLogo({ to, ...restProps }) {
 	const history = useHistory();
 	return <Logo onClick={() => history.push(to)} {...restProps} />;
+};
+
+Header.Search = function HeaderSearch({ searchTerm, setSearchTerm, ...restProps }) {
+	const [ searchActive, setSearchActive ] = useState(false);
+	return (
+		<Search {...restProps}>
+			<SearchIcon onClick={() => setSearchActive((searchActive) => !searchActive)} />
+			<SearchInput
+				value={searchTerm}
+				onChange={({ target }) => setSearchTerm(target.value)}
+				isActive={searchActive}
+				placeholder="Type film or series title"
+			/>
+		</Search>
+	);
 };
 
 Header.Avatar = function HeaderAvatar({ ...restProps }) {
@@ -48,11 +77,17 @@ Header.Menu = function HeaderMenu({ children, ...restProps }) {
 	return <Menu {...restProps}>{children}</Menu>;
 };
 
-Header.MenuOption = function HeaderMenuOption({ profile, ...restProps }) {
+Header.MenuOption = function HeaderMenuOption({ profile, children, ...restProps }) {
 	return (
 		<MenuOption {...restProps}>
-			<Avatar src={`/images/avatars/${profile.avatar}`} alt={`${profile.name} Avatar`} isOption />
-			{profile.name}
+			{profile && profile.avatar ? (
+				<React.Fragment>
+					<Avatar src={`/images/avatars/${profile.avatar}`} alt={`${profile.name} Avatar`} isOption />
+					{profile.name}
+				</React.Fragment>
+			) : (
+				children
+			)}
 		</MenuOption>
 	);
 };

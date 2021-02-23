@@ -4,34 +4,32 @@ import { SECTIONS } from '../api/movieEndpoints';
 import { Show } from '../components';
 import SliderContainer from './slider';
 
-function SectionsContainer() {
-	const [ tvGenres, setTVGenres ] = useState([]);
-	const [ movieGenres, setMovieGenres ] = useState([]);
+function SectionsContainer({ category }) {
+	const [ genres, setGenres ] = useState([]);
 	const [ trailerDisplayed, setTrailerDisplayed ] = useState({});
 
-	useEffect(() => {
-		try {
-			movieHttp.get(SECTIONS.movies.helpers.fetchMovieGenres).then((response) => {
-				setMovieGenres(() => response.data.genres);
-				movieHttp.get(SECTIONS.series.helpers.fetchTVGenres).then((response) => {
-					setTVGenres(() => response.data.genres);
-				});
-			});
-		} catch ({ response }) {
-			console.log(response);
-		}
-	}, []);
+	useEffect(
+		() => {
+			try {
+				const endpoint =
+					category === 'series' ? SECTIONS.series.helpers.fetchTVGenres : SECTIONS.movies.helpers.fetchMovieGenres;
+				movieHttp.get(endpoint).then((response) => setGenres(() => response.data.genres));
+			} catch ({ response }) {
+				console.log(response);
+			}
+		},
+		[ category ]
+	);
 	return (
 		<React.Fragment>
 			<Show.Sections>
-				{SECTIONS.movies.genres.map((section) => {
-					const mediaType = 'movie';
+				{SECTIONS[category].sections.map((section) => {
 					return (
 						<SliderContainer
 							key={section.title}
 							section={section}
-							mediaType={mediaType}
-							genres={mediaType === 'movie' ? movieGenres : tvGenres}
+							category={category}
+							genres={genres}
 							trailerDisplayed={trailerDisplayed}
 							onUpdateTrailer={setTrailerDisplayed}
 						/>

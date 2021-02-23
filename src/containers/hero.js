@@ -5,7 +5,7 @@ import { Hero } from '../components';
 import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
 
-function HeroContainer({ profile }) {
+function HeroContainer({ profile, category }) {
 	const [ banner, setBanner ] = useState({});
 	const [ heroTrailer, setHeroTrailer ] = useState();
 	const [ isMuted, setIsMuted ] = useState(true);
@@ -14,13 +14,15 @@ function HeroContainer({ profile }) {
 	useEffect(
 		() => {
 			async function fetchData() {
-				const response = await movieHttp.get(SECTIONS.series.general[4].endpoint);
+				const response = await movieHttp.get(SECTIONS[category].sections[4].endpoint);
 				const bannerDetails = response.data.results[Math.floor(Math.random() * response.data.results.length)];
 				setBanner(bannerDetails);
 				if (!isMobile) {
-					const trailerResponse = await movieHttp.get(
-						SECTIONS.series.helpers.fetchTVVideos.replace('{{tv_id}}', bannerDetails.id)
-					);
+					const endpoint =
+						category === 'series'
+							? SECTIONS.series.helpers.fetchTVVideos.replace('{{tv_id}}', bannerDetails.id)
+							: SECTIONS.movies.helpers.fetchMovieVideos.replace('{{movie_id}}', bannerDetails.id);
+					const trailerResponse = await movieHttp.get(endpoint);
 					if (trailerResponse.data.results.length > 0) {
 						const trailerDetails = trailerResponse.data.results
 							.reverse()
@@ -31,7 +33,7 @@ function HeroContainer({ profile }) {
 			}
 			fetchData();
 		},
-		[ isMobile, profile ]
+		[ isMobile, profile, category ]
 	);
 
 	const truncate = (string, length) => {

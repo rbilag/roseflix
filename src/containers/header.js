@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import SearchIcon from '@material-ui/icons/Search';
 import { Header } from '../components';
 import { ROUTES } from '../constants/routes';
 import { useUser } from '../context/UserContext';
 
-function HeaderContainer({ logoOnly, profile, setProfile }) {
-	const { userDetails } = useUser();
+function HeaderContainer({ logoOnly, profile, setProfile, category, setCategory }) {
+	const { userDetails, setUserDetails } = useUser();
+	const [ searchTerm, setSearchTerm ] = useState('');
 	const [ isShown, handleShown ] = useState(false);
 
 	useEffect(() => {
@@ -22,6 +22,11 @@ function HeaderContainer({ logoOnly, profile, setProfile }) {
 		};
 	}, []);
 
+	const signout = () => {
+		localStorage.clear();
+		setUserDetails(undefined);
+	};
+
 	return (
 		<Header className={isShown ? 'opaque' : ''}>
 			<Header.Panel>
@@ -34,10 +39,12 @@ function HeaderContainer({ logoOnly, profile, setProfile }) {
 				{!logoOnly &&
 				userDetails && (
 					<Header.Nav>
-						<Header.NavLink href="#">Home</Header.NavLink>
-						<Header.NavLink href="#">TV Shows</Header.NavLink>
-						<Header.NavLink href="#">Movies</Header.NavLink>
-						<Header.NavLink href="#">New &amp; Popular</Header.NavLink>
+						<Header.NavLink isSelected={category === 'series'} onClick={() => setCategory('series')}>
+							TV Shows
+						</Header.NavLink>
+						<Header.NavLink isSelected={category === 'movies'} onClick={() => setCategory('movies')}>
+							Movies
+						</Header.NavLink>
 					</Header.Nav>
 				)}
 			</Header.Panel>
@@ -45,7 +52,7 @@ function HeaderContainer({ logoOnly, profile, setProfile }) {
 				{!logoOnly &&
 					(userDetails ? (
 						<React.Fragment>
-							<SearchIcon />
+							<Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 							<Header.Dropdown>
 								<Header.Avatar src={`/images/avatars/${profile.avatar}`} alt="User Avatar" />
 								<Header.Menu>
@@ -56,6 +63,10 @@ function HeaderContainer({ logoOnly, profile, setProfile }) {
 											onClick={() => setProfile(profile)}
 										/>
 									))}
+									<Header.MenuOption className="no-img">Manage Profiles</Header.MenuOption>
+									<Header.MenuOption className="no-img" onClick={() => signout()}>
+										Sign out of Netflix
+									</Header.MenuOption>
 								</Header.Menu>
 							</Header.Dropdown>
 						</React.Fragment>
