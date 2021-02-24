@@ -10,3 +10,5 @@ export { default as SectionsContainer } from './sections';
 export { default as ShowContainer } from './show';
 export { default as SliderContainer } from './slider';
 export { default as SubscribeContainer } from './subscribe';
+export { default as EpisodeContainer } from './episode';
+export { default as DetailsContainer } from './details';

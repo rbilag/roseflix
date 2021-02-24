@@ -3,8 +3,7 @@ import { debounce } from '@material-ui/core';
 import { Show } from '../components';
 import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
-
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/';
+import { IMAGE_BASE_URL } from '../constants/config';
 
 function ShowContainer({ section, category, genres, trailerDisplayed, onUpdateTrailer, show }) {
 	const [ isMuted, setIsMuted ] = useState(true);

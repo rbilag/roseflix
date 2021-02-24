@@ -11,3 +11,5 @@ export { default as Mute } from './mute';
 export { default as Hero } from './hero';
 export { default as Show } from './show';
 export { default as Player } from './player';
+export { default as Episode } from './episode';
+export { default as Details } from './details';

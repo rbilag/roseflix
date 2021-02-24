@@ -27,7 +27,10 @@ export const SECTIONS = {
 		helpers: {
 			fetchMovieGenres: `genre/movie/list?api_key=${API_KEY}`,
 			fetchMovieVideos: `/movie/{{movie_id}}/videos?api_key=${API_KEY}`,
-			fetchMovieDetails: `/movie/{{movie_id}}?api_key=${API_KEY}`
+			fetchMovieDetails: `/movie/{{movie_id}}?api_key=${API_KEY}`,
+			fetchMovieRecommendations: `/movie/{{movie_id}}/recommendations?api_key=${API_KEY}`,
+			fetchMovieSimilar: `/movie/{{movie_id}}/similar?api_key=${API_KEY}`,
+			fetchMovieCredits: `/movie/{{movie_id}}/credits?api_key=${API_KEY}`
 		}
 	},
 	series: {
@@ -51,7 +54,12 @@ export const SECTIONS = {
 		helpers: {
 			fetchTVGenres: `genre/tv/list?api_key=${API_KEY}`,
 			fetchTVVideos: `/tv/{{tv_id}}/videos?api_key=${API_KEY}`,
-			fetchTVDetails: `/tv/{{tv_id}}?api_key=${API_KEY}`
+			fetchTVDetails: `/tv/{{tv_id}}?api_key=${API_KEY}`,
+			fetchTVAggregateCredits: `/tv/{{tv_id}}/aggregate_credits?api_key=${API_KEY}`,
+			fetchTVCredits: `/tv/{{tv_id}}/credits?api_key=${API_KEY}`,
+			fetchTVRecommendations: `/tv/{{tv_id}}/recommendations?api_key=${API_KEY}`,
+			fetchTVSimilar: `/tv/{{tv_id}}/similar?api_key=${API_KEY}`,
+			fetchTVSeason: `/tv/{{tv_id}}/season/{{season_number}}?api_key=${API_KEY}`
 		}
 	}
 };

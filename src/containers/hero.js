@@ -6,7 +6,7 @@ import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
 import { usePlayer } from '../context/PlayerContext';
 
-function HeroContainer({ profile, category }) {
+function HeroContainer({ profile, category, setOpenId }) {
 	const [ banner, setBanner ] = useState({});
 	const [ heroTrailer, setHeroTrailer ] = useState();
 	const [ isMuted, setIsMuted ] = useState(true);
@@ -63,7 +63,7 @@ function HeroContainer({ profile, category }) {
 					<Hero.Button className="white-btn" onClick={() => setPlaying(banner)}>
 						<PlayArrowIcon /> <span>Play</span>
 					</Hero.Button>
-					<Hero.Button>
+					<Hero.Button onClick={() => setOpenId(banner.id)}>
 						<InfoOutlinedIcon /> <span>More Info</span>
 					</Hero.Button>
 				</Hero.Details>
