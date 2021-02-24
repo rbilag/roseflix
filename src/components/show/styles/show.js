@@ -202,6 +202,14 @@ export const Row = styled.div`
 	}
 
 	&.lg-container {
+		padding: 8rem 0 14rem 3.5rem;
+		@media (max-width: 1000px) {
+			padding: 8rem 0 8.5rem 2.75rem;
+		}
+		@media (max-width: 600px) {
+			padding: 8rem 0 3rem 1.5rem;
+		}
+
 		${CardContainer} {
 			max-height: 30rem;
 			padding-bottom: 1rem;

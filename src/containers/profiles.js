@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeaderContainer } from '.';
-import Profiles from '../components/profiles';
+import { Profiles } from '../components';
 
 function ProfilesContainer({ userDetails, setProfile }) {
 	return (

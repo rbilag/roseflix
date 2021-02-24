@@ -10,3 +10,4 @@ export { default as Loading } from './loading';
 export { default as Mute } from './mute';
 export { default as Hero } from './hero';
 export { default as Show } from './show';
+export { default as Player } from './player';

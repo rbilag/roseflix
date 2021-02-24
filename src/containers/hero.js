@@ -4,11 +4,13 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import { Hero } from '../components';
 import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
+import { usePlayer } from '../context/PlayerContext';
 
 function HeroContainer({ profile, category }) {
 	const [ banner, setBanner ] = useState({});
 	const [ heroTrailer, setHeroTrailer ] = useState();
 	const [ isMuted, setIsMuted ] = useState(true);
+	const { setPlaying } = usePlayer();
 	const isMobile = window.innerWidth <= 600;
 
 	useEffect(
@@ -58,7 +60,7 @@ function HeroContainer({ profile, category }) {
 						{banner.name || banner.title || banner.original_name}
 					</Hero.Title>
 					{!heroTrailer && !isMobile && <Hero.Description>{truncate(banner.overview, 185)}</Hero.Description>}
-					<Hero.Button className="white-btn">
+					<Hero.Button className="white-btn" onClick={() => setPlaying(banner)}>
 						<PlayArrowIcon /> <span>Play</span>
 					</Hero.Button>
 					<Hero.Button>
