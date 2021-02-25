@@ -3,7 +3,7 @@ import movieHttp from '../api/movie';
 import { Show } from '../components';
 import ShowContainer from './show';
 
-function SliderContainer({ section, category, genres, trailerDisplayed, onUpdateTrailer }) {
+function SliderContainer({ section, genres, trailerDisplayed, onUpdateTrailer }) {
 	const [ shows, setShows ] = useState([]);
 
 	useEffect(
@@ -25,7 +25,6 @@ function SliderContainer({ section, category, genres, trailerDisplayed, onUpdate
 								show={show}
 								trailerDisplayed={trailerDisplayed}
 								section={section}
-								category={category}
 								genres={genres}
 								onUpdateTrailer={onUpdateTrailer}
 							/>

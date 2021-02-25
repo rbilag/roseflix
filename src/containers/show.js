@@ -4,12 +4,14 @@ import { Show } from '../components';
 import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
 import { IMAGE_BASE_URL } from '../constants/config';
+import { usePlayer } from '../context/PlayerContext';
 
-function ShowContainer({ section, category, genres, trailerDisplayed, onUpdateTrailer, show }) {
+function ShowContainer({ section, genres, trailerDisplayed, onUpdateTrailer, show }) {
 	const [ isMuted, setIsMuted ] = useState(true);
 	const showPoster =
 		(trailerDisplayed.id === show.id && trailerDisplayed.header !== section.title) || trailerDisplayed.id !== show.id;
 	const playerRef = React.createRef();
+	const { category: { category } } = usePlayer();
 
 	const handleShowHover = async () => {
 		try {

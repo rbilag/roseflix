@@ -13,3 +13,4 @@ export { default as Show } from './show';
 export { default as Player } from './player';
 export { default as Episode } from './episode';
 export { default as Details } from './details';
+export { default as Recommendation } from './recommendation';

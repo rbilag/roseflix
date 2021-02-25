@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Player } from '../components';
-import { usePlayer } from '../context/PlayerContext';
 import { LockBody } from '../components/loading/styles/loading';
 
-function PlayerContainer() {
-	const { playing, setPlaying } = usePlayer();
+function PlayerContainer({ playing, setPlaying }) {
 	const [ isPaused, setIsPaused ] = useState();
 
 	return (

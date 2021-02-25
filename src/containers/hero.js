@@ -6,11 +6,16 @@ import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
 import { usePlayer } from '../context/PlayerContext';
 
-function HeroContainer({ profile, category, setOpenId }) {
+function HeroContainer({ profile }) {
 	const [ banner, setBanner ] = useState({});
 	const [ heroTrailer, setHeroTrailer ] = useState();
-	const [ isMuted, setIsMuted ] = useState(true);
-	const { setPlaying } = usePlayer();
+	const playerRef = React.createRef();
+	const {
+		category: { category },
+		playing: { setPlaying },
+		isMuted: { isMuted, setIsMuted },
+		detailsTrailer: { setDetailsTrailer }
+	} = usePlayer();
 	const isMobile = window.innerWidth <= 600;
 
 	useEffect(
@@ -46,6 +51,7 @@ function HeroContainer({ profile, category, setOpenId }) {
 		<Hero>
 			{heroTrailer && (
 				<Hero.Video
+					playerRef={playerRef}
 					isMuted={isMuted}
 					setIsMuted={setIsMuted}
 					heroTrailer={heroTrailer}
@@ -63,7 +69,16 @@ function HeroContainer({ profile, category, setOpenId }) {
 					<Hero.Button className="white-btn" onClick={() => setPlaying(banner)}>
 						<PlayArrowIcon /> <span>Play</span>
 					</Hero.Button>
-					<Hero.Button onClick={() => setOpenId(banner.id)}>
+					<Hero.Button
+						onClick={() => {
+							setDetailsTrailer({
+								id: banner.id,
+								key: heroTrailer,
+								start: playerRef.current ? playerRef.current.getCurrentTime() : 0
+							});
+							setHeroTrailer();
+						}}
+					>
 						<InfoOutlinedIcon /> <span>More Info</span>
 					</Hero.Button>
 				</Hero.Details>

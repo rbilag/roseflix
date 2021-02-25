@@ -38,6 +38,10 @@ export const ListItem = styled.div`
 	place-items: center;
 	border-bottom: 1px solid #404040;
 	padding: 0 4rem 0 1.5rem;
+
+	&:last-of-type {
+		border-bottom: 3px solid #404040;
+	}
 `;
 export const ListItemTitle = styled.p`
 	font-weight: 800;
@@ -49,4 +53,26 @@ export const Overview = styled.p`
 	font-size: 0.9rem;
 	line-height: 1.5;
 `;
-export const ShowMore = styled.div``;
+export const ShowMore = styled.div`
+	border: 2px solid rgba(255, 255, 255, .5);
+	background-color: rgba(42, 42, 42, .6);
+	border-radius: 50%;
+	width: 3rem;
+	height: 3rem;
+	margin: auto;
+	margin-top: -1.5rem;
+	cursor: pointer;
+	transition: all 0.25s ease-out;
+
+	.MuiSvgIcon-root {
+		font-size: 2rem;
+		width: 2rem;
+		height: 2rem;
+		padding: 0.48rem;
+	}
+
+	&:hover {
+		border: 2px solid #fff;
+		background-color: #545454;
+	}
+`;

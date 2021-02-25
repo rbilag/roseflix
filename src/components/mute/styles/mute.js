@@ -36,7 +36,8 @@ export const Container = styled.div`
 		border: 1px solid #fff;
 	}
 
-	&.volume-btn--hero {
+	&.volume-btn--hero,
+	&.volume-btn--details {
 		top: 75vh;
 		right: 6rem;
 		z-index: 1;
@@ -57,5 +58,10 @@ export const Container = styled.div`
 				padding: 0.5rem;
 			}
 		}
+	}
+
+	&.volume-btn--details {
+		top: 25rem;
+		right: 3rem;
 	}
 `;

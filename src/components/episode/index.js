@@ -1,5 +1,7 @@
 import React from 'react';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+
 import {
 	Container,
 	Header,
@@ -27,9 +29,9 @@ Episode.Header = function EpisodeHeader({ children, ...restProps }) {
 Episode.Title = function EpisodeTitle({ children, ...restProps }) {
 	return <Title {...restProps}>{children}</Title>;
 };
-Episode.Dropdown = function EpisodeDropdown({ seasons, setSeason, ...restProps }) {
+Episode.Dropdown = function EpisodeDropdown({ seasons, season, setSeason, ...restProps }) {
 	return (
-		<Dropdown {...restProps} onChange={(e) => setSeason(e.target.value)}>
+		<Dropdown {...restProps} onChange={(e) => setSeason(e.target.value)} value={season}>
 			{seasons.map(({ name, season_number }) => (
 				<option key={season_number} value={season_number}>
 					{name}
@@ -50,12 +52,9 @@ Episode.ListItemTitle = function EpisodeListItemTitle({ children, ...restProps }
 Episode.Overview = function EpisodeOverview({ children, ...restProps }) {
 	return <Overview {...restProps}>{children}</Overview>;
 };
-Episode.ShowMore = function EpisodeShowMore({ ...restProps }) {
-	return (
-		<ShowMore {...restProps}>
-			<KeyboardArrowDownIcon />
-		</ShowMore>
-	);
+Episode.ShowMore = function EpisodeShowMore({ showAll, ...restProps }) {
+	console.log(showAll);
+	return <ShowMore {...restProps}>{showAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}</ShowMore>;
 };
 
 export default Episode;

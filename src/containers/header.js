@@ -65,7 +65,7 @@ function HeaderContainer({ logoOnly, profile, setProfile, category, setCategory 
 									))}
 									<Header.MenuOption className="no-img">Manage Profiles</Header.MenuOption>
 									<Header.MenuOption className="no-img" onClick={() => signout()}>
-										Sign out of Netflix
+										Sign out of Roseflix
 									</Header.MenuOption>
 								</Header.Menu>
 							</Header.Dropdown>

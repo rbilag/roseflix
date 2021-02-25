@@ -75,7 +75,7 @@ function Signin() {
 					</Form.Button>
 				</Form.FormGroup>
 				<Form.Text>
-					New to Netflix? <Form.Link to={ROUTES.SIGNUP.path}>Sign up now</Form.Link>.
+					New to Roseflix? <Form.Link to={ROUTES.SIGNUP.path}>Sign up now</Form.Link>.
 				</Form.Text>
 				<Form.TextSmall>This page is protected by Google reCAPTCHA to ensure you're not a bot.</Form.TextSmall>
 			</Form>

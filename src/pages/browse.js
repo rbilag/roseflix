@@ -9,9 +9,10 @@ function Browse() {
 	const { userDetails } = useUser();
 	const [ profile, setProfile ] = useState();
 	const [ loading, setLoading ] = useState(true);
-	const [ category, setCategory ] = useState('series');
 	const [ playing, setPlaying ] = useState();
-	const [ openId, setOpenId ] = useState();
+	const [ detailsTrailer, setDetailsTrailer ] = useState();
+	const [ isMuted, setIsMuted ] = useState(true);
+	const [ category, setCategory ] = useState('series');
 
 	useEffect(
 		() => {
@@ -27,13 +28,20 @@ function Browse() {
 	);
 
 	return profile ? (
-		<PlayerContext.Provider value={{ playing, setPlaying }}>
+		<PlayerContext.Provider
+			value={{
+				playing: { playing, setPlaying },
+				detailsTrailer: { detailsTrailer, setDetailsTrailer },
+				isMuted: { isMuted, setIsMuted },
+				category: { category, setCategory }
+			}}
+		>
 			{loading ? <Loading src={profile.avatar} /> : <Loading.ReleaseBody />}
 			<HeaderContainer profile={profile} setProfile={setProfile} category={category} setCategory={setCategory} />
-			<HeroContainer profile={profile} category={category} setOpenId={setOpenId} />
+			<HeroContainer profile={profile} />
 			<SectionsContainer category={category} />
-			{playing && <PlayerContainer />}
-			{openId && <DetailsContainer openId={openId} category={category} />}
+			{playing && <PlayerContainer playing={playing} setPlaying={setPlaying} />}
+			{detailsTrailer && <DetailsContainer />}
 		</PlayerContext.Provider>
 	) : (
 		<ProfilesContainer userDetails={userDetails} setProfile={setProfile} />

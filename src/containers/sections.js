@@ -50,7 +50,6 @@ function SectionsContainer({ category }) {
 							<SliderContainer
 								key={section.title}
 								section={section}
-								category={category}
 								genres={genres}
 								trailerDisplayed={trailerDisplayed}
 								onUpdateTrailer={setTrailerDisplayed}

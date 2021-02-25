@@ -7,6 +7,7 @@ import { IMAGE_BASE_URL } from '../constants/config';
 function EpisodeContainer({ openId, seasons }) {
 	const [ season, setSeason ] = useState(1);
 	const [ episodes, setEpisodes ] = useState();
+	const [ showAll, setShowAll ] = useState(false);
 
 	useEffect(
 		() => {
@@ -17,27 +18,37 @@ function EpisodeContainer({ openId, seasons }) {
 		},
 		[ season, openId ]
 	);
+
+	const truncate = (string, length) => {
+		return string.length > length ? string.substr(0, length - 1) + '...' : string;
+	};
+
 	return (
 		<Episode.Container>
 			<Episode.Header>
 				<Episode.Title>Episodes</Episode.Title>
-				<Episode.Dropdown seasons={seasons} setSeason={setSeason} />
+				<Episode.Dropdown seasons={seasons} setSeason={setSeason} season={season} />
 			</Episode.Header>
 			{episodes && (
 				<Episode.List>
-					{episodes.map(({ id, episode_number, name, overview, still_path }) => (
-						<Episode key={id}>
-							<Episode.Panel className="episode-number">{episode_number}</Episode.Panel>
-							<Episode.Panel className="episode-image">
-								<img src={`${IMAGE_BASE_URL}w185${still_path}`} alt={`Episode ${episode_number} Still`} />
-							</Episode.Panel>
-							<Episode.Panel className="episode-details">
-								<Episode.ListItemTitle>{name}</Episode.ListItemTitle>
-								<Episode.Overview>{overview}</Episode.Overview>
-							</Episode.Panel>
-						</Episode>
-					))}
-					{episodes.length > 10 && <Episode.ShowMore />}
+					{episodes.map(
+						({ id, episode_number, name, overview, still_path }, i) =>
+							(showAll || (!showAll && i < 10)) && (
+								<Episode key={id}>
+									<Episode.Panel className="episode-number">{episode_number}</Episode.Panel>
+									<Episode.Panel className="episode-image">
+										<img src={`${IMAGE_BASE_URL}w185${still_path}`} alt={`Episode ${episode_number} Still`} />
+									</Episode.Panel>
+									<Episode.Panel className="episode-details">
+										<Episode.ListItemTitle>{name}</Episode.ListItemTitle>
+										<Episode.Overview>{truncate(overview, 185)}</Episode.Overview>
+									</Episode.Panel>
+								</Episode>
+							)
+					)}
+					{episodes.length > 10 && (
+						<Episode.ShowMore onClick={() => setShowAll((showAll) => !showAll)} showAll={showAll} />
+					)}
 				</Episode.List>
 			)}
 		</Episode.Container>
