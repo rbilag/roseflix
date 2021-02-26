@@ -37,6 +37,27 @@ export const Avatar = styled.img`
 		border: 2px solid transparent;
 	}
 `;
+export const AvatarEditOverlay = styled.div`
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 100%;
+	height: calc(100% - 2.15rem - 12px);
+	border-radius: 0.25rem;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.MuiSvgIcon-root {
+		color: #fff;
+		border: 2px solid #fff;
+		border-radius: 50%;
+		width: 1.75rem;
+		height: 1.75rem;
+		padding: 0.5rem;
+	}
+`;
 export const Name = styled.p`
 	color: grey;
 	font-size: 1.65rem;
@@ -51,6 +72,7 @@ export const User = styled.div`
 	max-width: 12rem;
 	margin: 0 1.25rem;
 	cursor: pointer;
+	position: relative;
 
 	&:hover {
 		${Avatar} {
@@ -76,6 +98,7 @@ export const User = styled.div`
 	}
 `;
 export const Button = styled.button`
+	outline: none;
 	background-color: transparent;
 	border: 1px solid grey;
 	color: grey;
@@ -91,9 +114,50 @@ export const Button = styled.button`
 		border: 1px solid #fff;
 		color: #fff;
 	}
+	&.white-btn {
+		background-color: #fff;
+		border: 1px solid #fff;
+		color: #141414;
+		&:hover {
+			background-color: #c00;
+			border: 1px solid #c00;
+			color: #fff;
+		}
+	}
 	@media (max-width: 1000px) {
 		font-size: 0.85rem;
 		padding: 0.5rem 1rem;
 		margin-top: 3rem;
+	}
+`;
+export const Panel = styled.div`
+	max-width: 20rem;
+	margin: auto;
+	&.button-area {
+		max-width: 35rem;
+		${Button} {
+			margin: 6rem 0.25rem 0;
+		}
+	}
+	img {
+		max-width: 15rem;
+	}
+	input {
+		margin-top: 2rem;
+	}
+`;
+export const IconButton = styled.div`
+	margin-top: -4rem;
+	text-align: left;
+	padding-left: 3rem;
+	.MuiSvgIcon-root {
+		color: #fff;
+		border: 2px solid #fff;
+		border-radius: 50%;
+		width: 1.75rem;
+		height: 1.75rem;
+		padding: 0.5rem;
+		background: #000;
+		cursor: pointer;
 	}
 `;
