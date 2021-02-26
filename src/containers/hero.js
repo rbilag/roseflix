@@ -8,13 +8,13 @@ import { usePlayer } from '../context/PlayerContext';
 
 function HeroContainer({ profile }) {
 	const [ banner, setBanner ] = useState({});
-	const [ heroTrailer, setHeroTrailer ] = useState();
 	const playerRef = React.createRef();
 	const {
 		category: { category },
 		playing: { setPlaying },
 		isMuted: { isMuted, setIsMuted },
-		detailsTrailer: { setDetailsTrailer }
+		detailsTrailer: { setDetailsTrailer },
+		heroTrailer: { heroTrailer, setHeroTrailer }
 	} = usePlayer();
 	const isMobile = window.innerWidth <= 600;
 
@@ -40,7 +40,7 @@ function HeroContainer({ profile }) {
 			}
 			fetchData();
 		},
-		[ isMobile, profile, category ]
+		[ isMobile, profile, category, setHeroTrailer ]
 	);
 
 	const truncate = (string, length) => {
@@ -76,7 +76,6 @@ function HeroContainer({ profile }) {
 								key: heroTrailer,
 								start: playerRef.current ? playerRef.current.getCurrentTime() : 0
 							});
-							setHeroTrailer();
 						}}
 					>
 						<InfoOutlinedIcon /> <span>More Info</span>

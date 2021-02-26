@@ -1,42 +1,53 @@
 import React, { useState } from 'react';
-import { debounce } from '@material-ui/core';
 import { Show } from '../components';
 import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
 import { IMAGE_BASE_URL } from '../constants/config';
 import { usePlayer } from '../context/PlayerContext';
 
-function ShowContainer({ section, genres, trailerDisplayed, onUpdateTrailer, show }) {
+function ShowContainer({ section, genres, show }) {
+	const {
+		category: { category },
+		detailsTrailer: { setDetailsTrailer },
+		trailerDisplayed: { trailerDisplayed, setTrailerDisplayed },
+		heroTrailer: { setHeroTrailer }
+	} = usePlayer();
 	const [ isMuted, setIsMuted ] = useState(true);
 	const showPoster =
 		(trailerDisplayed.id === show.id && trailerDisplayed.header !== section.title) || trailerDisplayed.id !== show.id;
 	const playerRef = React.createRef();
-	const { category: { category } } = usePlayer();
+	const [ delayHandler, setDelayHandler ] = useState(null);
 
 	const handleShowHover = async () => {
-		try {
-			const endpoint =
-				category === 'series'
-					? SECTIONS.series.helpers.fetchTVVideos.replace('{{tv_id}}', show.id)
-					: SECTIONS.movies.helpers.fetchMovieVideos.replace('{{movie_id}}', show.id);
-			let response = await movieHttp.get(endpoint);
-			const trailerDetails = response.data.results
-				.reverse()
-				.find((video) => video.site === 'YouTube' && video.type === 'Trailer');
-			if (trailerDetails)
-				onUpdateTrailer({
-					id: show.id,
-					header: section.title,
-					url: trailerDetails.key,
-					isLoaded: false
-				});
-		} catch (e) {
-			console.log(e);
-		}
+		setDelayHandler(
+			setTimeout(async () => {
+				try {
+					const endpoint =
+						category === 'series'
+							? SECTIONS.series.helpers.fetchTVVideos.replace('{{tv_id}}', show.id)
+							: SECTIONS.movies.helpers.fetchMovieVideos.replace('{{movie_id}}', show.id);
+					const response = await movieHttp.get(endpoint);
+					const trailerDetails = response.data.results
+						.reverse()
+						.find((video) => video.site === 'YouTube' && video.type === 'Trailer');
+					if (trailerDetails) {
+						setTrailerDisplayed({
+							id: show.id,
+							header: section.title,
+							url: trailerDetails.key,
+							isLoaded: false
+						});
+						setHeroTrailer();
+					}
+				} catch (e) {
+					console.log(e);
+				}
+			}, 800)
+		);
 	};
 
 	const onTrailerReady = () => {
-		onUpdateTrailer({ ...trailerDisplayed, isLoaded: true });
+		setTrailerDisplayed({ ...trailerDisplayed, isLoaded: true });
 	};
 
 	const calculateIfNew = (dateString) => {
@@ -48,7 +59,20 @@ function ShowContainer({ section, genres, trailerDisplayed, onUpdateTrailer, sho
 
 	return (
 		<Show>
-			<Show.Card onMouseEnter={debounce(handleShowHover)} onMouseLeave={() => onUpdateTrailer({})}>
+			<Show.Card
+				onMouseEnter={() => handleShowHover()}
+				onMouseLeave={() => {
+					clearTimeout(delayHandler);
+					setTrailerDisplayed({});
+				}}
+				onClick={() => {
+					setDetailsTrailer({
+						id: show.id,
+						key: trailerDisplayed.url,
+						start: playerRef.current ? playerRef.current.getCurrentTime() : 0
+					});
+				}}
+			>
 				{!showPoster &&
 				trailerDisplayed.url && (
 					<Show.Video
@@ -56,7 +80,7 @@ function ShowContainer({ section, genres, trailerDisplayed, onUpdateTrailer, sho
 						playerRef={playerRef}
 						isMuted={isMuted}
 						setIsMuted={setIsMuted}
-						onUpdateTrailer={onUpdateTrailer}
+						setTrailerDisplayed={setTrailerDisplayed}
 						onTrailerReady={onTrailerReady}
 						className={trailerDisplayed.isLoaded ? 'trailer-visible' : ''}
 					/>

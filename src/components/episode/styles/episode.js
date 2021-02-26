@@ -23,8 +23,16 @@ export const Dropdown = styled.select`
 export const List = styled.div``;
 export const Panel = styled.div`
 	&.episode-number {
+		flex: 1;
 		font-size: 1.5rem;
 		color: #d2d2d2;
+		text-align: center;
+	}
+	&.episode-image {
+		flex: 5;
+	}
+	&.episode-details {
+		flex: 15;
 	}
 	img {
 		max-width: 9rem;

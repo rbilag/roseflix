@@ -53,7 +53,6 @@ Episode.Overview = function EpisodeOverview({ children, ...restProps }) {
 	return <Overview {...restProps}>{children}</Overview>;
 };
 Episode.ShowMore = function EpisodeShowMore({ showAll, ...restProps }) {
-	console.log(showAll);
 	return <ShowMore {...restProps}>{showAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}</ShowMore>;
 };
 

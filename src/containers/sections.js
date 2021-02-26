@@ -4,29 +4,8 @@ import { SECTIONS } from '../api/movieEndpoints';
 import { Show } from '../components';
 import SliderContainer from './slider';
 
-function SectionsContainer({ category }) {
+function SectionsContainer({ category, sectionDisplayed, setSectionDisplayed }) {
 	const [ genres, setGenres ] = useState([]);
-	const [ trailerDisplayed, setTrailerDisplayed ] = useState({});
-	const [ sectionDisplayed, setSectionDisplayed ] = useState(5);
-
-	React.useEffect(
-		() => {
-			const handleScroll = () => {
-				const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 300;
-				if (bottom) {
-					setSectionDisplayed((sectionDisplayed) => {
-						const newDisplayed = sectionDisplayed + 5;
-						return newDisplayed <= SECTIONS[category].sections.length ? newDisplayed : sectionDisplayed;
-					});
-				}
-			};
-			window.addEventListener('scroll', handleScroll, { passive: true });
-			return () => {
-				window.removeEventListener('scroll', handleScroll);
-			};
-		},
-		[ category ]
-	);
 
 	useEffect(
 		() => {
@@ -39,23 +18,13 @@ function SectionsContainer({ category }) {
 				console.log(response);
 			}
 		},
-		[ category ]
+		[ category, setSectionDisplayed ]
 	);
 	return (
 		<React.Fragment>
 			<Show.Sections>
 				{SECTIONS[category].sections.map((section, i) => {
-					return (
-						i < sectionDisplayed && (
-							<SliderContainer
-								key={section.title}
-								section={section}
-								genres={genres}
-								trailerDisplayed={trailerDisplayed}
-								onUpdateTrailer={setTrailerDisplayed}
-							/>
-						)
-					);
+					return i < sectionDisplayed && <SliderContainer key={section.title} section={section} genres={genres} />;
 				})}
 			</Show.Sections>
 		</React.Fragment>

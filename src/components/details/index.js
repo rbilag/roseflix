@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
+import CloseIcon from '@material-ui/icons/Close';
 import { Mute } from '..';
 import { PLAYER_CONFIG } from '../../constants/config';
 import {
@@ -12,19 +13,25 @@ import {
 	Button,
 	Summary,
 	Panel,
-	MinorDetails
+	MinorDetails,
+	Close
 } from './styles/details';
 
 function Details({ children, ...restProps }) {
-	return (
-		<Container {...restProps}>
-			<Inner>{children}</Inner>
-		</Container>
-	);
+	return <Container {...restProps}>{children}</Container>;
 }
+
+Details.Inner = function DetailsInner({ childRef, children, ...restProps }) {
+	return (
+		<Inner ref={childRef} {...restProps}>
+			{children}
+		</Inner>
+	);
+};
 
 Details.Video = function DetailsVideo({ isMuted, setIsMuted, detailsTrailer, setShowBanner, ...restProps }) {
 	const { youtube: { playerVars } } = PLAYER_CONFIG;
+	const config = { youtube: { playerVars: { ...playerVars, start: Math.floor(detailsTrailer.start) } } };
 	return (
 		<Video {...restProps}>
 			<ReactPlayer
@@ -35,7 +42,7 @@ Details.Video = function DetailsVideo({ isMuted, setIsMuted, detailsTrailer, set
 				playing
 				muted={isMuted}
 				onEnded={() => setShowBanner(true)}
-				config={{ youtube: { playerVars: { ...playerVars, start: detailsTrailer.start } } }}
+				config={config}
 			/>
 			<Mute className="volume-btn--details" isMuted={isMuted} onMutedToggle={setIsMuted} />
 		</Video>
@@ -65,6 +72,13 @@ Details.Panel = function DetailsPanel({ children, ...restProps }) {
 };
 Details.MinorDetails = function DetailsMinorDetails({ children, ...restProps }) {
 	return <MinorDetails {...restProps}>{children}</MinorDetails>;
+};
+Details.Close = function DetailsClose({ ...restProps }) {
+	return (
+		<Close {...restProps}>
+			<CloseIcon />
+		</Close>
+	);
 };
 
 export default Details;

@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 export const Sections = styled.div`
 	position: absolute;
-	width: calc(100vw - 1.04rem);
+	width: 100%;
 	left: 0;
 	right: 0;
 `;

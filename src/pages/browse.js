@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import Scrollbar from 'react-scrollbars-custom';
 import { Loading } from '../components';
-import { HeaderContainer, HeroContainer, SectionsContainer, ProfilesContainer, PlayerContainer } from '../containers';
+import {
+	HeaderContainer,
+	HeroContainer,
+	SectionsContainer,
+	ProfilesContainer,
+	PlayerContainer,
+	SearchContainer
+} from '../containers';
 import { useUser } from '../context/UserContext';
 import { PlayerContext } from '../context/PlayerContext';
 import { DetailsContainer } from '../containers';
+import { SECTIONS } from '../api/movieEndpoints';
 
 function Browse() {
 	const { userDetails } = useUser();
@@ -11,8 +20,13 @@ function Browse() {
 	const [ loading, setLoading ] = useState(true);
 	const [ playing, setPlaying ] = useState();
 	const [ detailsTrailer, setDetailsTrailer ] = useState();
+	const [ heroTrailer, setHeroTrailer ] = useState();
+	const [ trailerDisplayed, setTrailerDisplayed ] = useState({});
 	const [ isMuted, setIsMuted ] = useState(true);
 	const [ category, setCategory ] = useState('series');
+	const [ isHeaderShown, setHeaderShown ] = useState(false);
+	const [ sectionDisplayed, setSectionDisplayed ] = useState(5);
+	const [ searchResult, setSearchResult ] = useState();
 
 	useEffect(
 		() => {
@@ -27,21 +41,60 @@ function Browse() {
 		[ profile ]
 	);
 
+	const handleOnScroll = ({ clientHeight, scrollTop, scrollHeight }) => {
+		const bottom = Math.ceil(clientHeight + scrollTop) >= scrollHeight - 300;
+		if (bottom) {
+			setSectionDisplayed((sectionDisplayed) => {
+				const newDisplayed = sectionDisplayed + 5;
+				return newDisplayed <= SECTIONS[category].sections.length ? newDisplayed : sectionDisplayed;
+			});
+		}
+		if (scrollTop > 100 && !isHeaderShown) {
+			setHeaderShown(true);
+		} else if (scrollTop <= 100 && isHeaderShown) {
+			setHeaderShown(false);
+		}
+	};
+
 	return profile ? (
 		<PlayerContext.Provider
 			value={{
 				playing: { playing, setPlaying },
 				detailsTrailer: { detailsTrailer, setDetailsTrailer },
 				isMuted: { isMuted, setIsMuted },
-				category: { category, setCategory }
+				category: { category, setCategory },
+				heroTrailer: { heroTrailer, setHeroTrailer },
+				trailerDisplayed: { trailerDisplayed, setTrailerDisplayed }
 			}}
 		>
-			{loading ? <Loading src={profile.avatar} /> : <Loading.ReleaseBody />}
-			<HeaderContainer profile={profile} setProfile={setProfile} category={category} setCategory={setCategory} />
-			<HeroContainer profile={profile} />
-			<SectionsContainer category={category} />
-			{playing && <PlayerContainer playing={playing} setPlaying={setPlaying} />}
-			{detailsTrailer && <DetailsContainer />}
+			<Scrollbar noDefaultStyles className="main-scrollbar" onScroll={(e) => handleOnScroll(e)}>
+				<div className="browse">
+					{loading ? <Loading src={profile.avatar} /> : <Loading.ReleaseBody />}
+					{detailsTrailer && <DetailsContainer />}
+					<HeaderContainer
+						profile={profile}
+						setProfile={setProfile}
+						isHeaderShown={isHeaderShown}
+						category={category}
+						setCategory={setCategory}
+						setSearchResult={setSearchResult}
+					/>
+					{searchResult ? (
+						<SearchContainer />
+					) : (
+						<React.Fragment>
+							<HeroContainer profile={profile} />
+							<SectionsContainer
+								category={category}
+								sectionDisplayed={sectionDisplayed}
+								setSectionDisplayed={setSectionDisplayed}
+							/>
+						</React.Fragment>
+					)}
+
+					{playing && <PlayerContainer playing={playing} setPlaying={setPlaying} />}
+				</div>
+			</Scrollbar>
 		</PlayerContext.Provider>
 	) : (
 		<ProfilesContainer userDetails={userDetails} setProfile={setProfile} />

@@ -24,20 +24,21 @@ function RecommendationContainer({ category, openId }) {
 	const truncate = (string, length) => {
 		return string.length > length ? string.substr(0, length - 1) + '...' : string;
 	};
+	console.log(recommendations);
 
-	return (
+	return recommendations && recommendations.length > 0 ? (
 		<Recommendation.Container>
 			<Recommendation.Header>More Like This</Recommendation.Header>
 			{recommendations && (
 				<Recommendation.Grid>
 					{recommendations.map(
-						({ id, backdrop_path, overview, name, first_air_date }, i) =>
+						({ id, backdrop_path, overview, name, title, first_air_date, release_date }, i) =>
 							(showAll || (!showAll && i < 9)) && (
 								<Recommendation key={id}>
 									<Recommendation.Banner src={backdrop_path} />
 									<Recommendation.Details>
-										<Recommendation.Title>{name}</Recommendation.Title>
-										<Recommendation.Year>{new Date(first_air_date).getFullYear()}</Recommendation.Year>
+										<Recommendation.Title>{name || title}</Recommendation.Title>
+										<Recommendation.Year>{new Date(first_air_date || release_date).getFullYear()}</Recommendation.Year>
 										<p>{truncate(overview, 175)}</p>
 									</Recommendation.Details>
 								</Recommendation>
@@ -52,7 +53,7 @@ function RecommendationContainer({ category, openId }) {
 				</Recommendation.ShowMoreWrapper>
 			)}
 		</Recommendation.Container>
-	);
+	) : null;
 }
 
 export default RecommendationContainer;

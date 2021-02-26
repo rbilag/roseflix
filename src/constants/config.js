@@ -10,3 +10,5 @@ export const PLAYER_CONFIG = {
 };
 
 export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/';
+export const BACKDROP_PLACEHOLDER = 'https://plchldr.co/i/300x169?bg=111111&text=ROSEFLIX';
+export const STILL_PLACEHOLDER = 'https://plchldr.co/i/185x104?bg=111111&text=ROSEFLIX';

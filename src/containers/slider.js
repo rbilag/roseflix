@@ -3,7 +3,7 @@ import movieHttp from '../api/movie';
 import { Show } from '../components';
 import ShowContainer from './show';
 
-function SliderContainer({ section, genres, trailerDisplayed, onUpdateTrailer }) {
+function SliderContainer({ section, genres }) {
 	const [ shows, setShows ] = useState([]);
 
 	useEffect(
@@ -19,16 +19,7 @@ function SliderContainer({ section, genres, trailerDisplayed, onUpdateTrailer })
 				<h2>{section.title}</h2>
 				<Show.Row className={`${section.size || 'md'}-container`}>
 					{shows.map((show) => {
-						return (
-							<ShowContainer
-								key={show.id}
-								show={show}
-								trailerDisplayed={trailerDisplayed}
-								section={section}
-								genres={genres}
-								onUpdateTrailer={onUpdateTrailer}
-							/>
-						);
+						return <ShowContainer key={show.id} show={show} section={section} genres={genres} />;
 					})}
 				</Show.Row>
 			</Show.Container>

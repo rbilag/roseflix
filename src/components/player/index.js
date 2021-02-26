@@ -37,6 +37,7 @@ Player.Video = function PlayerVideo({ setIsPaused, ...restProps }) {
 				height="100%"
 				playing
 				controls
+				config={{ file: { attributes: { disablePictureInPicture: true } } }}
 				onPause={() => setIsPaused(true)}
 				onPlay={() => setIsPaused(false)}
 			/>

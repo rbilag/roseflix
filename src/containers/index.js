@@ -13,3 +13,4 @@ export { default as SubscribeContainer } from './subscribe';
 export { default as EpisodeContainer } from './episode';
 export { default as DetailsContainer } from './details';
 export { default as RecommendationContainer } from './recommendation';
+export { default as SearchContainer } from './search';

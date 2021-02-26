@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Episode } from '../components';
 import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
-import { IMAGE_BASE_URL } from '../constants/config';
+import { IMAGE_BASE_URL, STILL_PLACEHOLDER } from '../constants/config';
 
 function EpisodeContainer({ openId, seasons }) {
 	const [ season, setSeason ] = useState(1);
@@ -37,7 +37,10 @@ function EpisodeContainer({ openId, seasons }) {
 								<Episode key={id}>
 									<Episode.Panel className="episode-number">{episode_number}</Episode.Panel>
 									<Episode.Panel className="episode-image">
-										<img src={`${IMAGE_BASE_URL}w185${still_path}`} alt={`Episode ${episode_number} Still`} />
+										<img
+											src={still_path ? `${IMAGE_BASE_URL}w185${still_path}` : STILL_PLACEHOLDER}
+											alt={`Episode ${episode_number} Still`}
+										/>
 									</Episode.Panel>
 									<Episode.Panel className="episode-details">
 										<Episode.ListItemTitle>{name}</Episode.ListItemTitle>

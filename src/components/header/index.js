@@ -37,7 +37,7 @@ Header.Logo = function HeaderLogo({ to, ...restProps }) {
 	return <Logo onClick={() => history.push(to)} {...restProps} />;
 };
 
-Header.Search = function HeaderSearch({ searchTerm, setSearchTerm, ...restProps }) {
+Header.Search = function HeaderSearch({ searchTerm, setSearchTerm, handleSearch, ...restProps }) {
 	const [ searchActive, setSearchActive ] = useState(false);
 	return (
 		<Search {...restProps}>
@@ -45,6 +45,7 @@ Header.Search = function HeaderSearch({ searchTerm, setSearchTerm, ...restProps 
 			<SearchInput
 				value={searchTerm}
 				onChange={({ target }) => setSearchTerm(target.value)}
+				onKeyDown={({ code }) => (code === 'Enter' ? handleSearch() : null)}
 				isActive={searchActive}
 				placeholder="Type film or series title"
 			/>

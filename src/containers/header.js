@@ -1,26 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { SECTIONS } from '../api/movieEndpoints';
 import { Header } from '../components';
 import { ROUTES } from '../constants/routes';
 import { useUser } from '../context/UserContext';
+import movieHttp from '../api/movie';
 
-function HeaderContainer({ logoOnly, profile, setProfile, category, setCategory }) {
+function HeaderContainer({ logoOnly, profile, setProfile, category, setCategory, isHeaderShown, setSearchResult }) {
 	const { userDetails, setUserDetails } = useUser();
 	const [ searchTerm, setSearchTerm ] = useState('');
-	const [ isShown, handleShown ] = useState(false);
 
-	useEffect(() => {
-		const scrollListener = () => {
-			if (window.scrollY > 100) {
-				handleShown(true);
-			} else {
-				handleShown(false);
-			}
-		};
-		window.addEventListener('scroll', scrollListener);
-		return () => {
-			window.removeEventListener('scroll', scrollListener);
-		};
-	}, []);
+	const handleSearch = () => {
+		if (searchTerm) {
+			const endpoint =
+				category === 'series'
+					? SECTIONS.series.helpers.searchTV.replace('{{query}}', searchTerm)
+					: SECTIONS.movies.helpers.searchMovie.replace('{{query}}', searchTerm);
+			movieHttp
+				.get(endpoint)
+				.then(({ data }) => {
+					console.log(data.results);
+					data.results.sort((a, b) => (a.popularity > b.popularity ? -1 : b.popularity > a.popularity ? 1 : 0));
+					setSearchResult(data.results);
+				})
+				.catch((e) => console.log(e));
+		} else {
+			setSearchResult();
+		}
+	};
 
 	const signout = () => {
 		localStorage.clear();
@@ -28,7 +34,7 @@ function HeaderContainer({ logoOnly, profile, setProfile, category, setCategory 
 	};
 
 	return (
-		<Header className={isShown ? 'opaque' : ''}>
+		<Header className={isHeaderShown ? 'opaque' : ''}>
 			<Header.Panel>
 				<Header.Logo
 					className={!userDetails ? 'large' : ''}
@@ -52,7 +58,7 @@ function HeaderContainer({ logoOnly, profile, setProfile, category, setCategory 
 				{!logoOnly &&
 					(userDetails ? (
 						<React.Fragment>
-							<Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+							<Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} handleSearch={handleSearch} />
 							<Header.Dropdown>
 								<Header.Avatar src={`/images/avatars/${profile.avatar}`} alt="User Avatar" />
 								<Header.Menu>

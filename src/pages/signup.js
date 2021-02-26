@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { debounce } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
+import Scrollbar from 'react-scrollbars-custom';
 import { Form } from '../components';
 import { ROUTES } from '../constants/routes';
 import { FooterContainer, HeaderContainer } from '../containers';
@@ -16,6 +17,7 @@ function Signup() {
 	const [ isTouched, setIsTouched ] = useState({ email: false, phone: false, password: false, name: false });
 	const [ isAvailable, setIsAvailable ] = useState({ email: true, phone: true });
 	const [ isLoading, setIsLoading ] = useState(false);
+	const [ isHeaderShown, setHeaderShown ] = useState(false);
 	const emailInvalid = isTouched.email && email === '';
 	const nameInvalid = isTouched.name && name === '';
 	const phoneInvalid = isTouched.phone && phone.length !== 11;
@@ -53,9 +55,17 @@ function Signup() {
 			});
 	};
 
+	const handleOnScroll = (scrollTop) => {
+		if (scrollTop > 100 && !isHeaderShown) {
+			setHeaderShown(true);
+		} else if (scrollTop <= 100 && isHeaderShown) {
+			setHeaderShown(false);
+		}
+	};
+
 	return (
-		<React.Fragment>
-			<HeaderContainer logoOnly />
+		<Scrollbar noDefaultStyles className="main-scrollbar" onScroll={({ scrollTop }) => handleOnScroll(scrollTop)}>
+			<HeaderContainer logoOnly isHeaderShown={isHeaderShown} />
 			<Form>
 				<Form.Title>Sign Up</Form.Title>
 				<Form.FormGroup onSubmit={handleSignup} method="POST">
@@ -127,7 +137,7 @@ function Signup() {
 				<Form.TextSmall>This page is protected by Google reCAPTCHA to ensure you're not a bot.</Form.TextSmall>
 			</Form>
 			<FooterContainer />
-		</React.Fragment>
+		</Scrollbar>
 	);
 }
 

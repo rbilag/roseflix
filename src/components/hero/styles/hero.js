@@ -8,7 +8,7 @@ export const Overlay = styled.div`
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: calc(100vw - 1.04rem);
+	width: 100%;
 	height: 100vh;
 	z-index: 0;
 	background: ${({ fullOverlay }) =>
@@ -23,7 +23,7 @@ export const Overlay = styled.div`
 	}
 `;
 export const Video = styled.div`
-	width: calc(100vw - 1.04rem);
+	width: 100%;
 	height: 100vh;
 	z-index: -99;
 
@@ -34,7 +34,7 @@ export const Video = styled.div`
 		> div {
 			position: relative;
 			overflow: hidden;
-			width: calc(100vw - 1.04rem);
+			width: 100%;
 			height: 115vh;
 			z-index: 0;
 			pointer-events: none;
@@ -43,7 +43,7 @@ export const Video = styled.div`
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				width: calc(100vw - 1.04rem);
+				width: 100%;
 				height: 115vh;
 				pointer-events: none;
 				z-index: 0;
@@ -68,11 +68,11 @@ export const Video = styled.div`
 	}
 `;
 export const Banner = styled.div`
-	width: calc(100vw - 1.04rem);
+	width: 100%;
 	height: 100vh;
-	background-size: cover;
 	background: ${({ src }) =>
 		`linear-gradient(rgba(20,20,20,0) 60%, rgba(20,20,20,0.95)), url("https://image.tmdb.org/t/p/original/${src}") center`};
+	background-size: cover;
 	z-index: 0;
 
 	@media (max-width: 1000px) {
@@ -106,10 +106,10 @@ export const Title = styled.h1`
 `;
 export const Details = styled.div`
 	position: absolute;
-	top: 0;
 	left: 0;
 	padding-left: 3.5rem;
-	padding-top: calc(50vh - 10rem);
+	bottom: 0;
+	padding-bottom: calc(50vh - 10rem);
 	z-index: 1;
 	transition: all 0.25s cubic-bezier(0.5, 0, 0.1, 1);
 
@@ -150,9 +150,9 @@ export const Button = styled.button`
 	background: #69696996;
 	border: none;
 	outline: none;
-	padding: 0.65rem 2rem;
+	padding: 0.5rem 2rem 0.5rem 1.5rem;
 	margin: 1.5rem 0.75rem 1rem 0;
-	font-size: 1.35rem;
+	font-size: 1.45rem;
 	font-weight: bold;
 	color: #fff;
 	border-radius: 0.25rem;
@@ -172,9 +172,8 @@ export const Button = styled.button`
 	}
 
 	.MuiSvgIcon-root {
-		font-size: 2.35rem;
+		font-size: 2.5rem;
 		vertical-align: middle;
-		padding-right: 0.5rem;
 
 		@media (max-width: 1000px) {
 			font-size: 1.25rem;

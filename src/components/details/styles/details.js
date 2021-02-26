@@ -8,10 +8,10 @@ import {
 } from '../../hero/styles/hero';
 
 export const Container = styled.div`
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 10;
+	z-index: 99;
 	background-color: rgba(0, 0, 0, 0.7);
 	width: 100vw;
 	height: 100vh;
@@ -62,9 +62,8 @@ export const Overlay = styled(HeroOverlay)`
 	background: linear-gradient(rgba(20, 20, 20, 0) 60%, rgba(20, 20, 20, 0.95));
 `;
 export const Title = styled(HeroTitle)`
-	position: absolute;
-	top: 17rem;
-	left: 3rem;
+	margin: 0 0 0.5rem;
+	font-size: 2rem;
 `;
 export const Button = styled(HeroButton)`
 	position: absolute;
@@ -87,9 +86,6 @@ export const Panel = styled.div`
 				margin-right: 1rem;
 			}
 		}
-		.popularity {
-			font-weight: 800;
-		}
 		.overview {
 			font-weight: 500;
 			font-size: 1.1rem;
@@ -105,5 +101,19 @@ export const MinorDetails = styled.p`
 	line-height: 1.5;
 	span {
 		color: #777;
+	}
+`;
+export const Close = styled.div`
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	z-index: 10;
+	cursor: pointer;
+	.MuiSvgIcon-root {
+		background-color: #181818;
+		border-radius: 50%;
+		width: 1.5rem;
+		height: 1.5rem;
+		padding: 0.35rem;
 	}
 `;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Scrollbar from 'react-scrollbars-custom';
 import { Form } from '../components';
 import { ROUTES } from '../constants/routes';
 import { FooterContainer, HeaderContainer } from '../containers';
@@ -12,6 +13,7 @@ function Signin() {
 	const [ errorMsg, setErrorMsg ] = useState('');
 	const [ isTouched, setIsTouched ] = useState({ email: false, password: false });
 	const [ isLoading, setIsLoading ] = useState(false);
+	const [ isHeaderShown, setHeaderShown ] = useState(false);
 	const emailInvalid = isTouched.email && email === '';
 	const passwordInvalid = isTouched.password && password === '';
 	const canProceed = password && email && !passwordInvalid && !emailInvalid;
@@ -35,9 +37,17 @@ function Signin() {
 		}
 	};
 
+	const handleOnScroll = (scrollTop) => {
+		if (scrollTop > 100 && !isHeaderShown) {
+			setHeaderShown(true);
+		} else if (scrollTop <= 100 && isHeaderShown) {
+			setHeaderShown(false);
+		}
+	};
+
 	return (
-		<React.Fragment>
-			<HeaderContainer logoOnly />
+		<Scrollbar noDefaultStyles className="main-scrollbar" onScroll={({ scrollTop }) => handleOnScroll(scrollTop)}>
+			<HeaderContainer logoOnly isHeaderShown={isHeaderShown} />
 			<Form>
 				<Form.Title>Sign In</Form.Title>
 				<Form.FormGroup onSubmit={handleSignin} method="POST">
@@ -80,7 +90,7 @@ function Signin() {
 				<Form.TextSmall>This page is protected by Google reCAPTCHA to ensure you're not a bot.</Form.TextSmall>
 			</Form>
 			<FooterContainer />
-		</React.Fragment>
+		</Scrollbar>
 	);
 }
 
