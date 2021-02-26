@@ -119,7 +119,6 @@ export const Details = styled.div`
 export const CardContainer = styled.div`
 	object-fit: contain;
 	width: 100%;
-	max-height: 13rem;
 	margin-right: 0.25rem;
 	z-index: 1;
 

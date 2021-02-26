@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Scrollbar from 'react-scrollbars-custom';
+import movieHttp from '../api/movie';
 import { Loading } from '../components';
 import {
 	HeaderContainer,
@@ -27,6 +28,7 @@ function Browse() {
 	const [ isHeaderShown, setHeaderShown ] = useState(false);
 	const [ sectionDisplayed, setSectionDisplayed ] = useState(5);
 	const [ searchResult, setSearchResult ] = useState();
+	const [ genres, setGenres ] = useState([]);
 
 	useEffect(
 		() => {
@@ -39,6 +41,20 @@ function Browse() {
 			};
 		},
 		[ profile ]
+	);
+
+	useEffect(
+		() => {
+			try {
+				const endpoint =
+					category === 'series' ? SECTIONS.series.helpers.fetchTVGenres : SECTIONS.movies.helpers.fetchMovieGenres;
+				movieHttp.get(endpoint).then((response) => setGenres(() => response.data.genres));
+				setSectionDisplayed(5);
+			} catch ({ response }) {
+				console.log(response);
+			}
+		},
+		[ category, setSectionDisplayed ]
 	);
 
 	const handleOnScroll = ({ clientHeight, scrollTop, scrollHeight }) => {
@@ -64,7 +80,8 @@ function Browse() {
 				isMuted: { isMuted, setIsMuted },
 				category: { category, setCategory },
 				heroTrailer: { heroTrailer, setHeroTrailer },
-				trailerDisplayed: { trailerDisplayed, setTrailerDisplayed }
+				trailerDisplayed: { trailerDisplayed, setTrailerDisplayed },
+				genres: { genres, setGenres }
 			}}
 		>
 			<Scrollbar noDefaultStyles className="main-scrollbar" onScroll={(e) => handleOnScroll(e)}>
@@ -80,7 +97,7 @@ function Browse() {
 						setSearchResult={setSearchResult}
 					/>
 					{searchResult ? (
-						<SearchContainer />
+						<SearchContainer searchResult={searchResult} />
 					) : (
 						<React.Fragment>
 							<HeroContainer profile={profile} />

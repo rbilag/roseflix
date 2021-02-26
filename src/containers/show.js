@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { Show } from '../components';
 import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
-import { IMAGE_BASE_URL } from '../constants/config';
+import { BACKDROP_PLACEHOLDER, POSTER_PLACEHOLDER, IMAGE_BASE_URL } from '../constants/config';
 import { usePlayer } from '../context/PlayerContext';
 
-function ShowContainer({ section, genres, show }) {
+function ShowContainer({ section, show }) {
 	const {
 		category: { category },
 		detailsTrailer: { setDetailsTrailer },
 		trailerDisplayed: { trailerDisplayed, setTrailerDisplayed },
-		heroTrailer: { setHeroTrailer }
+		heroTrailer: { setHeroTrailer },
+		genres: { genres }
 	} = usePlayer();
 	const [ isMuted, setIsMuted ] = useState(true);
 	const showPoster =
@@ -85,11 +86,19 @@ function ShowContainer({ section, genres, show }) {
 						className={trailerDisplayed.isLoaded ? 'trailer-visible' : ''}
 					/>
 				)}
-				{(showPoster || (trailerDisplayed.id === show.id && !trailerDisplayed.isLoaded)) &&
-				show.poster_path &&
-				show.backdrop_path && (
+				{(showPoster || (trailerDisplayed.id === show.id && !trailerDisplayed.isLoaded)) && (
 					<Show.Poster
-						src={IMAGE_BASE_URL + (section.size === 'lg' ? 'w342' + show.poster_path : 'w300' + show.backdrop_path)}
+						src={
+							section.size === 'lg' ? show.poster_path ? (
+								`${IMAGE_BASE_URL}w342${show.poster_path}`
+							) : (
+								POSTER_PLACEHOLDER
+							) : show.backdrop_path ? (
+								`${IMAGE_BASE_URL}w300${show.backdrop_path}`
+							) : (
+								BACKDROP_PLACEHOLDER
+							)
+						}
 						alt={show.name || show.title}
 					/>
 				)}
