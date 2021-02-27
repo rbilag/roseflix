@@ -1,19 +1,49 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { HeaderContainer } from '.';
 import { Form, Profiles } from '../components';
-import { PROFILE_PLACEHOLDER } from '../constants/config';
+import mainHttp from '../api/mainEndpoints';
+import { useUser } from '../context/UserContext';
 
 function ProfilesContainer({ userDetails, setProfile }) {
+	const { setUserDetails } = useUser();
 	const [ render, setRender ] = useState('default');
 	const [ editingUser, setEditingUser ] = useState();
 	const prevDetails = useRef();
 	const usedAvatars = userDetails.profiles.map(({ avatar }) => avatar);
 
+	useEffect(
+		() => {
+			if (!userDetails.profiles || userDetails.profiles.length === 0) setRender('edit_main');
+			else setRender('default');
+		},
+		[ userDetails.profiles ]
+	);
+
 	const handleSave = () => {
-		console.log(prevDetails.current);
-		console.log(editingUser);
-		console.log('to connect to backend');
+		mainHttp
+			.upsertProfile({ newProfile: editingUser })
+			.then((response) => {
+				localStorage.setItem('roseflix-user', JSON.stringify(response.user));
+				setUserDetails(response.user);
+				setRender('default');
+			})
+			.catch(({ response }) => {
+				console.log(response);
+			});
+	};
+
+	const handleDelete = (profileId) => {
+		mainHttp
+			.deleteProfile({ profileId })
+			.then((response) => {
+				localStorage.setItem('roseflix-user', JSON.stringify(response.user));
+				setUserDetails(response.user);
+				setRender('default');
+			})
+			.catch(({ response }) => {
+				console.log(response);
+			});
 	};
 
 	const renderAvatars = () => {
@@ -53,8 +83,8 @@ function ProfilesContainer({ userDetails, setProfile }) {
 								</Profiles.AvatarHeaderPanel>
 							</Profiles.AvatarHeaderPanel>
 							<Profiles.AvatarHeaderPanel className="profile-previous">
-								<p>{prevDetails.current.name}</p>
-								<Profiles.Avatar src={prevDetails.current.avatar} />
+								<p>{(prevDetails.current && prevDetails.current.name) || editingUser.name}</p>
+								<Profiles.Avatar src={(prevDetails.current && prevDetails.current.avatar) || editingUser.avatar} />
 							</Profiles.AvatarHeaderPanel>
 						</Profiles.AvatarHeader>
 						<Profiles.AvatarGrid>{renderAvatars()}</Profiles.AvatarGrid>
@@ -65,7 +95,6 @@ function ProfilesContainer({ userDetails, setProfile }) {
 					<React.Fragment>
 						<Profiles.Title>Edit Profile</Profiles.Title>
 						<Profiles.Panel>
-							{/* TODO check if may editingUser => dont prefill>? */}
 							<Profiles.Avatar src={editingUser.avatar} />
 							<Profiles.IconButton onClick={() => setRender('edit_avatar')} />
 							<Form.Input
@@ -77,7 +106,11 @@ function ProfilesContainer({ userDetails, setProfile }) {
 							/>
 						</Profiles.Panel>
 						<Profiles.Panel className="button-area">
-							<Profiles.Button className="white-btn" onClick={() => handleSave()}>
+							<Profiles.Button
+								className="white-btn"
+								onClick={() => handleSave()}
+								disabled={!editingUser.name || editingUser.avatar === 'placeholder.png'}
+							>
 								SAVE
 							</Profiles.Button>
 							<Profiles.Button
@@ -88,7 +121,9 @@ function ProfilesContainer({ userDetails, setProfile }) {
 							>
 								CANCEL
 							</Profiles.Button>
-							<Profiles.Button>DELETE PROFILE</Profiles.Button>
+							{editingUser._id && (
+								<Profiles.Button onClick={() => handleDelete(editingUser._id)}>DELETE PROFILE</Profiles.Button>
+							)}
 						</Profiles.Panel>
 					</React.Fragment>
 				);
@@ -114,7 +149,13 @@ function ProfilesContainer({ userDetails, setProfile }) {
 								</Profiles.User>
 							))}
 							{render === 'edit_main' && (
-								<Profiles.User className="add-profile" onClick={() => setRender('edit_details')}>
+								<Profiles.User
+									className="add-profile"
+									onClick={() => {
+										setEditingUser({ avatar: 'placeholder.png', name: '' });
+										setRender('edit_details');
+									}}
+								>
 									<Profiles.AvatarEditOverlay isAdd />
 									<Profiles.Avatar src="placeholder.png" />
 									<Profiles.Name>Add Profile</Profiles.Name>

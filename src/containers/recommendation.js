@@ -24,7 +24,6 @@ function RecommendationContainer({ category, openId }) {
 	const truncate = (string, length) => {
 		return string.length > length ? string.substr(0, length - 1) + '...' : string;
 	};
-	console.log(recommendations);
 
 	return recommendations && recommendations.length > 0 ? (
 		<Recommendation.Container>

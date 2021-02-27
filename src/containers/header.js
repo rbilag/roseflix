@@ -18,7 +18,6 @@ function HeaderContainer({ logoOnly, profile, setProfile, category, setCategory,
 			movieHttp
 				.get(endpoint)
 				.then(({ data }) => {
-					console.log(data.results);
 					data.results.sort((a, b) => (a.popularity > b.popularity ? -1 : b.popularity > a.popularity ? 1 : 0));
 					setSearchResult(data.results);
 				})

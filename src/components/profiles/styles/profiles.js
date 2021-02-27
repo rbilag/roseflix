@@ -123,7 +123,14 @@ export const Button = styled.button`
 			border: 1px solid #c00;
 			color: #fff;
 		}
+		&:disabled {
+			background-color: #565656;
+			color: #969696;
+			cursor: default;
+			border: 1px solid #969696;
+		}
 	}
+
 	@media (max-width: 1000px) {
 		font-size: 0.85rem;
 		padding: 0.5rem 1rem;

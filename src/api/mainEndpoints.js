@@ -33,10 +33,34 @@ const signin = async (data) => {
 	});
 };
 
+const upsertProfile = async (data) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const response = await axios.post('/users/upsertProfile', data);
+			resolve(response.data);
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+const deleteProfile = async (data) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const response = await axios.post('/users/deleteProfile', data);
+			resolve(response.data);
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
 const mainHttp = {
 	signup,
 	signin,
-	checkAvailability
+	checkAvailability,
+	upsertProfile,
+	deleteProfile
 };
 
 export default mainHttp;

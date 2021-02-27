@@ -63,10 +63,6 @@ function DetailsContainer() {
 		[ detailsTrailer, category ]
 	);
 
-	console.log(detailsTrailer);
-	console.log(details);
-	console.log(cast);
-
 	return details && detailsTrailer ? (
 		<Details>
 			<LockBody />
