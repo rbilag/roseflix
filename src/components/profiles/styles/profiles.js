@@ -161,3 +161,63 @@ export const IconButton = styled.div`
 		cursor: pointer;
 	}
 `;
+export const AvatarGrid = styled.div`
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-auto-rows: minmax(auto, auto);
+	grid-gap: 1rem;
+	place-content: center;
+	margin: 5rem 8rem;
+	${Avatar} {
+		cursor: pointer;
+		&:hover {
+			border: 3px solid #fff;
+		}
+		&.avatar-used {
+			pointer-events: none;
+			filter: grayscale(1);
+			opacity: 0.5;
+		}
+	}
+`;
+export const AvatarHeader = styled.div`
+	display: flex;
+	justify-content: space-between;
+	margin: 0 3rem 8rem;
+`;
+export const AvatarHeaderPanel = styled.div`
+	p {
+		font-size: 1.8rem;
+		color: #fff;
+		margin: 0;
+	}
+	&.profile-title {
+		display: flex;
+		align-items: center;
+		font-weight: 800;
+		${Title} {
+			font-size: 2.5rem;
+			font-weight: 800;
+			margin-bottom: 0.5rem;
+			text-align: left;
+		}
+		.MuiSvgIcon-root {
+			width: 4rem;
+			height: 4rem;
+			margin-right: 1rem;
+			color: #fff;
+			cursor: pointer;
+		}
+	}
+
+	&.profile-previous {
+		display: flex;
+		align-items: center;
+		${Avatar} {
+			max-width: 6rem;
+		}
+		p {
+			margin-right: 1rem;
+		}
+	}
+`;

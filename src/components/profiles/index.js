@@ -1,5 +1,6 @@
 import React from 'react';
 import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons/Add';
 import {
 	Container,
 	Inner,
@@ -11,7 +12,10 @@ import {
 	Name,
 	Button,
 	Panel,
-	IconButton
+	IconButton,
+	AvatarGrid,
+	AvatarHeader,
+	AvatarHeaderPanel
 } from './styles/profiles';
 
 function Profiles({ children, ...restProps }) {
@@ -38,12 +42,20 @@ Profiles.Avatar = function ProfilesAvatar({ src, ...restProps }) {
 	return <Avatar src={`/images/avatars/${src}`} {...restProps} />;
 };
 
-Profiles.AvatarEditOverlay = function ProfilesAvatarEditOverlay({ ...restProps }) {
-	return (
-		<AvatarEditOverlay {...restProps}>
-			<EditIcon />
-		</AvatarEditOverlay>
-	);
+Profiles.AvatarGrid = function ProfilesAvatarGrid({ children, ...restProps }) {
+	return <AvatarGrid {...restProps}>{children}</AvatarGrid>;
+};
+
+Profiles.AvatarHeader = function ProfilesAvatarHeader({ children, ...restProps }) {
+	return <AvatarHeader {...restProps}>{children}</AvatarHeader>;
+};
+
+Profiles.AvatarHeaderPanel = function ProfilesAvatarHeaderPanel({ children, ...restProps }) {
+	return <AvatarHeaderPanel {...restProps}>{children}</AvatarHeaderPanel>;
+};
+
+Profiles.AvatarEditOverlay = function ProfilesAvatarEditOverlay({ isAdd, ...restProps }) {
+	return <AvatarEditOverlay {...restProps}>{isAdd ? <AddIcon /> : <EditIcon />}</AvatarEditOverlay>;
 };
 
 Profiles.Name = function ProfilesName({ children, ...restProps }) {
