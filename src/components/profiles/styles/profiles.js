@@ -57,6 +57,15 @@ export const AvatarEditOverlay = styled.div`
 		height: 1.75rem;
 		padding: 0.5rem;
 	}
+	@media (max-width: 1000px) {
+		top: 2px;
+		left: 2px;
+		height: calc(100% - 1.3rem - 8px);
+		.MuiSvgIcon-root {
+			width: 1rem;
+			height: 1rem;
+		}
+	}
 `;
 export const Name = styled.p`
 	color: grey;
@@ -145,12 +154,26 @@ export const Panel = styled.div`
 		${Button} {
 			margin: 6rem 0.25rem 0;
 		}
+		p {
+			color: #fff;
+			margin: 3rem 3rem 0;
+			font-size: 1.25rem;
+		}
 	}
 	img {
 		max-width: 15rem;
 	}
 	input {
 		margin-top: 2rem;
+	}
+	@media (max-width: 1000px) {
+		img {
+			max-width: 10rem;
+		}
+		input {
+			padding: 0.75rem;
+			width: calc(100% - 5rem);
+		}
 	}
 `;
 export const IconButton = styled.div`
@@ -166,6 +189,15 @@ export const IconButton = styled.div`
 		padding: 0.5rem;
 		background: #000;
 		cursor: pointer;
+	}
+
+	@media (max-width: 1000px) {
+		margin-top: -3rem;
+		padding-left: 5.35rem;
+		.MuiSvgIcon-root {
+			width: 1rem;
+			height: 1rem;
+		}
 	}
 `;
 export const AvatarGrid = styled.div`
@@ -186,11 +218,27 @@ export const AvatarGrid = styled.div`
 			opacity: 0.5;
 		}
 	}
+	@media (max-width: 1000px) {
+		grid-template-columns: repeat(4, 1fr);
+		${Avatar} {
+			&:hover {
+				border: 2px solid #fff;
+			}
+		}
+	}
+	@media (max-width: 600px) {
+		grid-template-columns: repeat(3, 1fr);
+		margin: 2rem;
+	}
 `;
 export const AvatarHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
 	margin: 0 3rem 8rem;
+
+	@media (max-width: 600px) {
+		margin: 0 1rem 3rem;
+	}
 `;
 export const AvatarHeaderPanel = styled.div`
 	p {
@@ -225,6 +273,30 @@ export const AvatarHeaderPanel = styled.div`
 		}
 		p {
 			margin-right: 1rem;
+		}
+	}
+	@media (max-width: 600px) {
+		p {
+			font-size: 0.8rem;
+		}
+
+		&.profile-title {
+			${Title} {
+				font-size: 1.5rem;
+			}
+			.MuiSvgIcon-root {
+				width: 2rem;
+				height: 2rem;
+				margin-right: 0.5rem;
+			}
+		}
+		&.profile-previous {
+			${Avatar} {
+				max-width: 3rem;
+			}
+			p {
+				margin-right: 0.5rem;
+			}
 		}
 	}
 `;

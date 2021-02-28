@@ -25,6 +25,10 @@ export const Inner = styled.div`
 	border-radius: 0.5rem;
 	overflow: auto;
 	position: relative;
+
+	@media (max-width: 1000px) {
+		width: 95vw;
+	}
 `;
 export const Video = styled(HeroVideo)`
 	height: 32rem;

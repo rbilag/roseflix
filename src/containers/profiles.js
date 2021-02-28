@@ -7,15 +7,16 @@ import { useUser } from '../context/UserContext';
 
 function ProfilesContainer({ userDetails, setProfile }) {
 	const { setUserDetails } = useUser();
-	const [ render, setRender ] = useState('default');
+	const [ render, setRender ] = useState({ type: { type: 'default', args: {} }, args: {} });
 	const [ editingUser, setEditingUser ] = useState();
 	const prevDetails = useRef();
 	const usedAvatars = userDetails.profiles.map(({ avatar }) => avatar);
+	const usedNames = userDetails.profiles.map(({ name }) => name);
 
 	useEffect(
 		() => {
-			if (!userDetails.profiles || userDetails.profiles.length === 0) setRender('edit_main');
-			else setRender('default');
+			if (!userDetails.profiles || userDetails.profiles.length === 0) setRender({ type: 'edit_main', args: {} });
+			else setRender({ type: 'default', args: {} });
 		},
 		[ userDetails.profiles ]
 	);
@@ -26,7 +27,7 @@ function ProfilesContainer({ userDetails, setProfile }) {
 			.then((response) => {
 				localStorage.setItem('roseflix-user', JSON.stringify(response.user));
 				setUserDetails(response.user);
-				setRender('default');
+				setRender({ type: 'default', args: {} });
 			})
 			.catch(({ response }) => {
 				console.log(response);
@@ -39,7 +40,7 @@ function ProfilesContainer({ userDetails, setProfile }) {
 			.then((response) => {
 				localStorage.setItem('roseflix-user', JSON.stringify(response.user));
 				setUserDetails(response.user);
-				setRender('default');
+				setRender({ type: 'default', args: {} });
 			})
 			.catch(({ response }) => {
 				console.log(response);
@@ -58,7 +59,7 @@ function ProfilesContainer({ userDetails, setProfile }) {
 					onClick={() => {
 						if (!usedAvatars.includes(filename)) {
 							setEditingUser((prevValue) => ({ ...prevValue, avatar: filename }));
-							setRender('edit_details');
+							setRender({ type: 'edit_details', args: {} });
 						} else return null;
 					}}
 				/>
@@ -68,7 +69,20 @@ function ProfilesContainer({ userDetails, setProfile }) {
 	};
 
 	const renderSwitch = () => {
-		switch (render) {
+		switch (render.type) {
+			case 'confirm_delete':
+				return (
+					<React.Fragment>
+						<Profiles.Title>Confirm Deletion</Profiles.Title>
+						<Profiles.Panel className="button-area">
+							<p>Are you sure you want to delete this profile? You will not be able to revert this process.</p>
+							<Profiles.Button className="white-btn" onClick={() => handleDelete(render.args.profileId)}>
+								YES
+							</Profiles.Button>
+							<Profiles.Button onClick={() => setRender({ type: 'edit_details', args: {} })}>CANCEL</Profiles.Button>
+						</Profiles.Panel>
+					</React.Fragment>
+				);
 			case 'edit_avatar':
 				return (
 					<React.Fragment>
@@ -96,7 +110,7 @@ function ProfilesContainer({ userDetails, setProfile }) {
 						<Profiles.Title>Edit Profile</Profiles.Title>
 						<Profiles.Panel>
 							<Profiles.Avatar src={editingUser.avatar} />
-							<Profiles.IconButton onClick={() => setRender('edit_avatar')} />
+							<Profiles.IconButton onClick={() => setRender({ type: 'edit_avatar', args: {} })} />
 							<Form.Input
 								placeholder="Display Name"
 								value={editingUser.name}
@@ -104,25 +118,35 @@ function ProfilesContainer({ userDetails, setProfile }) {
 									setEditingUser((prevValue) => ({ ...prevValue, name: target.value }));
 								}}
 							/>
+							{!editingUser._id &&
+							usedNames.includes(editingUser.name) && <Form.Error>Name is already taken.</Form.Error>}
 						</Profiles.Panel>
 						<Profiles.Panel className="button-area">
 							<Profiles.Button
 								className="white-btn"
 								onClick={() => handleSave()}
-								disabled={!editingUser.name || editingUser.avatar === 'placeholder.png'}
+								disabled={
+									!editingUser.name ||
+									editingUser.avatar === 'placeholder.png' ||
+									(!editingUser._id && usedNames.includes(editingUser.name))
+								}
 							>
 								SAVE
 							</Profiles.Button>
 							<Profiles.Button
 								onClick={() => {
 									setEditingUser();
-									setRender('default');
+									setRender({ type: 'default', args: {} });
 								}}
 							>
 								CANCEL
 							</Profiles.Button>
 							{editingUser._id && (
-								<Profiles.Button onClick={() => handleDelete(editingUser._id)}>DELETE PROFILE</Profiles.Button>
+								<Profiles.Button
+									onClick={() => setRender({ type: 'confirm_delete', args: { profileId: editingUser._id } })}
+								>
+									DELETE PROFILE
+								</Profiles.Button>
 							)}
 						</Profiles.Panel>
 					</React.Fragment>
@@ -130,30 +154,31 @@ function ProfilesContainer({ userDetails, setProfile }) {
 			default:
 				return (
 					<React.Fragment>
-						<Profiles.Title>{render === 'edit_main' ? 'Manage Profiles:' : "Who's watching?"}</Profiles.Title>
+						<Profiles.Title>{render.type === 'edit_main' ? 'Manage Profiles:' : "Who's watching?"}</Profiles.Title>
 						<Profiles.List>
 							{userDetails.profiles.map((profile) => (
 								<Profiles.User
 									key={profile._id}
 									onClick={() => {
-										if (render === 'edit_main') {
+										if (render.type === 'edit_main') {
 											prevDetails.current = profile;
 											setEditingUser(profile);
-											setRender('edit_details');
+											setRender({ type: 'edit_details', args: {} });
 										} else setProfile(profile);
 									}}
 								>
-									{render === 'edit_main' && <Profiles.AvatarEditOverlay />}
+									{render.type === 'edit_main' && <Profiles.AvatarEditOverlay />}
 									<Profiles.Avatar src={profile.avatar} />
 									<Profiles.Name>{profile.name}</Profiles.Name>
 								</Profiles.User>
 							))}
-							{render === 'edit_main' && (
+							{render.type === 'edit_main' &&
+							userDetails.profiles.length < 5 && (
 								<Profiles.User
 									className="add-profile"
 									onClick={() => {
 										setEditingUser({ avatar: 'placeholder.png', name: '' });
-										setRender('edit_details');
+										setRender({ type: 'edit_details', args: {} });
 									}}
 								>
 									<Profiles.AvatarEditOverlay isAdd />
@@ -162,12 +187,14 @@ function ProfilesContainer({ userDetails, setProfile }) {
 								</Profiles.User>
 							)}
 						</Profiles.List>
-						{render === 'edit_main' ? (
-							<Profiles.Button className="white-btn" onClick={() => setRender('default')}>
+						{render.type === 'edit_main' ? (
+							<Profiles.Button className="white-btn" onClick={() => setRender({ type: 'default', args: {} })}>
 								DONE
 							</Profiles.Button>
 						) : (
-							<Profiles.Button onClick={() => setRender('edit_main')}>MANAGE PROFILES</Profiles.Button>
+							<Profiles.Button onClick={() => setRender({ type: 'edit_main', args: {} })}>
+								MANAGE PROFILES
+							</Profiles.Button>
 						)}
 					</React.Fragment>
 				);

@@ -107,5 +107,8 @@ h1 {
 .modal-scrollbar {
 	width: 58rem!important;
 	height: 100%!important;
+	@media (max-width: 1000px) {
+		width: 95vw!important;
+	}
 }
 `;

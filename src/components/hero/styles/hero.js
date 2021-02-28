@@ -109,14 +109,14 @@ export const Details = styled.div`
 	left: 0;
 	padding-left: 3.5rem;
 	bottom: 0;
-	padding-bottom: calc(50vh - 10rem);
+	padding-bottom: 23rem;
 	z-index: 1;
 	transition: all 0.25s cubic-bezier(0.5, 0, 0.1, 1);
 
 	&.no-desc {
-		padding-top: 50vh;
+		padding-bottom: 15rem;
 		@media (max-width: 1000px) {
-			padding-top: 7.5rem;
+			padding-bottom: 8rem;
 			${Title} {
 				font-size: 2.5rem;
 				margin-bottom: 0.5rem;
@@ -126,11 +126,11 @@ export const Details = styled.div`
 
 	@media (max-width: 1000px) {
 		padding-left: 2.5rem;
-		padding-top: 7.5rem;
+		padding-bottom: 10rem;
 	}
 	@media (max-width: 600px) {
 		padding-left: 1rem;
-		padding-top: 4rem;
+		padding-bottom: 3rem;
 	}
 `;
 export const Description = styled.div`

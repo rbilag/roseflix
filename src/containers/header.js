@@ -68,7 +68,9 @@ function HeaderContainer({ logoOnly, profile, setProfile, category, setCategory,
 											onClick={() => setProfile(profile)}
 										/>
 									))}
-									<Header.MenuOption className="no-img">Manage Profiles</Header.MenuOption>
+									<Header.MenuOption className="no-img" onClick={() => setProfile()}>
+										Manage Profiles
+									</Header.MenuOption>
 									<Header.MenuOption className="no-img" onClick={() => signout()}>
 										Sign out of Roseflix
 									</Header.MenuOption>

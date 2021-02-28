@@ -14,6 +14,13 @@ export const Row = styled(ShowRow)`
   ${CardContainer} {
     margin-bottom: 4rem;
   }
+
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(4,14rem);
+    ${CardContainer} {
+      margin-bottom: 2rem;
+    }
+  }
 `;
 export const NoMatch = styled.div`
 	margin: 10rem auto;
