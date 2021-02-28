@@ -62,6 +62,9 @@ h1 {
 			right: 0;
 			background: rgba(255,255,255,0.04);
 			z-index: 3;
+			@media (max-width: 600px) {		
+				width: 0.5rem;
+			}
 		}
 
 		.ScrollbarsCustom-TrackX {
@@ -71,11 +74,17 @@ h1 {
 			left: 0.25rem;
 			background: rgba(255,255,255,0.04);
 			z-index: 3;
+			@media (max-width: 600px) {		
+				height: 0.5rem;
+			}
 		}
 
 		&.trackYVisible {
 			& > .ScrollbarsCustom-Wrapper {
     		right: 0.85rem;
+				@media (max-width: 600px) {		
+					right: 0.5rem;
+				}
 			}
 
 			& > .ScrollbarsCustom-TrackX {
@@ -109,6 +118,9 @@ h1 {
 	height: 100%!important;
 	@media (max-width: 1000px) {
 		width: 95vw!important;
+	}
+	@media (max-width: 600px) {		
+    width: 100vw!important;
 	}
 }
 `;

@@ -1,6 +1,11 @@
 import styled from 'styled-components/macro';
 
-export const Container = styled.div`padding: 3rem;`;
+export const Container = styled.div`
+	padding: 3rem;
+	@media (max-width: 600px) {
+		padding: 1.5rem;
+	}
+`;
 export const Header = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -50,16 +55,28 @@ export const ListItem = styled.div`
 	&:last-of-type {
 		border-bottom: 3px solid #404040;
 	}
+
+	@media (max-width: 600px) {
+		padding: 1rem 0;
+	}
 `;
 export const ListItemTitle = styled.p`
 	font-weight: 800;
 	font-size: 1.1rem;
 	margin-bottom: 0.5rem;
+	@media (max-width: 600px) {
+		font-size: 0.8rem;
+		margin-bottom: 0.25rem;
+	}
 `;
 export const Overview = styled.p`
 	color: #d2d2d2;
 	font-size: 0.9rem;
 	line-height: 1.5;
+	@media (max-width: 600px) {
+		font-size: 0.7rem;
+		line-height: 1.25;
+	}
 `;
 export const ShowMore = styled.div`
 	border: 2px solid rgba(255, 255, 255, .5);
@@ -82,5 +99,15 @@ export const ShowMore = styled.div`
 	&:hover {
 		border: 2px solid #fff;
 		background-color: #545454;
+	}
+
+	@media (max-width: 600px) {
+		width: 2rem;
+		height: 2rem;
+		.MuiSvgIcon-root {
+			font-size: 1rem;
+			width: 1rem;
+			height: 1rem;
+		}
 	}
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BACKDROP_PLACEHOLDER, IMAGE_BASE_URL } from '../../constants/config';
+import { BACKDROP_PLACEHOLDER, IMAGE_BASE_URL, IMAGE_SIZES } from '../../constants/config';
 import { Container, Grid, Card, Banner, Header, Title, Year, Details, ShowMoreWrapper } from './styles/recommendation';
 
 function Recommendation({ children, ...restProps }) {
@@ -13,7 +13,9 @@ Recommendation.Grid = function RecommendationGrid({ children, ...restProps }) {
 	return <Grid {...restProps}>{children}</Grid>;
 };
 Recommendation.Banner = function RecommendationBanner({ src, ...restProps }) {
-	return <Banner src={src ? `${IMAGE_BASE_URL}w300${src}` : BACKDROP_PLACEHOLDER} {...restProps} />;
+	return (
+		<Banner src={src ? `${IMAGE_BASE_URL + IMAGE_SIZES.backdrop.small + src}` : BACKDROP_PLACEHOLDER} {...restProps} />
+	);
 };
 Recommendation.Header = function RecommendationHeader({ children, ...restProps }) {
 	return <Header {...restProps}>{children}</Header>;

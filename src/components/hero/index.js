@@ -26,9 +26,9 @@ Hero.Video = function HeroVideo({ playerRef, isMuted, setIsMuted, heroTrailer, s
 		</Video>
 	);
 };
-Hero.Banner = function HeroBanner({ children, src, ...restProps }) {
+Hero.Banner = function HeroBanner({ children, src, windowWidth, ...restProps }) {
 	return (
-		<Banner src={src} {...restProps}>
+		<Banner src={src} windowWidth={windowWidth} {...restProps}>
 			{children}
 		</Banner>
 	);

@@ -3,6 +3,7 @@ import { SECTIONS } from '../api/movieEndpoints';
 import { Header } from '../components';
 import { ROUTES } from '../constants/routes';
 import { useUser } from '../context/UserContext';
+import { HEADER_LINKS } from '../constants/config';
 import movieHttp from '../api/movie';
 
 function HeaderContainer({ logoOnly, profile, setProfile, category, setCategory, isHeaderShown, setSearchResult }) {
@@ -32,6 +33,20 @@ function HeaderContainer({ logoOnly, profile, setProfile, category, setCategory,
 		setUserDetails(undefined);
 	};
 
+	const renderNavLinks = () => {
+		return window.innerWidth <= 600 ? (
+			<React.Fragment>
+				<Header.NavDropdown options={HEADER_LINKS} setCategory={setCategory} category={category} />
+			</React.Fragment>
+		) : (
+			HEADER_LINKS.map(({ title, value }) => (
+				<Header.NavLink isSelected={category === value} onClick={() => setCategory(value)}>
+					{title}
+				</Header.NavLink>
+			))
+		);
+	};
+
 	return (
 		<Header className={isHeaderShown ? 'opaque' : ''}>
 			<Header.Panel>
@@ -41,17 +56,7 @@ function HeaderContainer({ logoOnly, profile, setProfile, category, setCategory,
 					alt="Roseflix Logo"
 					to={ROUTES.HOME.path}
 				/>
-				{!logoOnly &&
-				userDetails && (
-					<Header.Nav>
-						<Header.NavLink isSelected={category === 'series'} onClick={() => setCategory('series')}>
-							TV Shows
-						</Header.NavLink>
-						<Header.NavLink isSelected={category === 'movies'} onClick={() => setCategory('movies')}>
-							Movies
-						</Header.NavLink>
-					</Header.Nav>
-				)}
+				{!logoOnly && userDetails && <Header.Nav>{renderNavLinks()}</Header.Nav>}
 			</Header.Panel>
 			<Header.Panel>
 				{!logoOnly &&

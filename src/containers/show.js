@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Show } from '../components';
 import movieHttp from '../api/movie';
 import { SECTIONS } from '../api/movieEndpoints';
-import { BACKDROP_PLACEHOLDER, POSTER_PLACEHOLDER, IMAGE_BASE_URL } from '../constants/config';
+import { BACKDROP_PLACEHOLDER, POSTER_PLACEHOLDER, IMAGE_BASE_URL, IMAGE_SIZES } from '../constants/config';
 import { usePlayer } from '../context/PlayerContext';
 
 function ShowContainer({ section, show }) {
@@ -18,6 +18,7 @@ function ShowContainer({ section, show }) {
 		(trailerDisplayed.id === show.id && trailerDisplayed.header !== section.title) || trailerDisplayed.id !== show.id;
 	const playerRef = React.createRef();
 	const [ delayHandler, setDelayHandler ] = useState(null);
+	const windowWidth = window.innerWidth;
 
 	const handleShowHover = async () => {
 		setDelayHandler(
@@ -90,11 +91,15 @@ function ShowContainer({ section, show }) {
 					<Show.Poster
 						src={
 							section.size === 'lg' ? show.poster_path ? (
-								`${IMAGE_BASE_URL}w342${show.poster_path}`
+								`${IMAGE_BASE_URL +
+									(windowWidth <= 600
+										? IMAGE_SIZES.poster.small
+										: windowWidth <= 1000 ? IMAGE_SIZES.poster.medium : IMAGE_SIZES.poster.large) +
+									show.poster_path}`
 							) : (
 								POSTER_PLACEHOLDER
 							) : show.backdrop_path ? (
-								`${IMAGE_BASE_URL}w300${show.backdrop_path}`
+								`${IMAGE_BASE_URL + IMAGE_SIZES.backdrop.small + show.backdrop_path}`
 							) : (
 								BACKDROP_PLACEHOLDER
 							)

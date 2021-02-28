@@ -16,7 +16,7 @@ function HeroContainer({ profile }) {
 		detailsTrailer: { setDetailsTrailer },
 		heroTrailer: { heroTrailer, setHeroTrailer }
 	} = usePlayer();
-	const isMobile = window.innerWidth <= 600;
+	const windowWidth = window.innerWidth;
 
 	useEffect(
 		() => {
@@ -24,7 +24,7 @@ function HeroContainer({ profile }) {
 				const response = await movieHttp.get(SECTIONS[category].sections[4].endpoint);
 				const bannerDetails = response.data.results[Math.floor(Math.random() * response.data.results.length)];
 				setBanner(bannerDetails);
-				if (!isMobile) {
+				if (windowWidth > 600) {
 					const endpoint =
 						category === 'series'
 							? SECTIONS.series.helpers.fetchTVVideos.replace('{{tv_id}}', bannerDetails.id)
@@ -40,7 +40,7 @@ function HeroContainer({ profile }) {
 			}
 			fetchData();
 		},
-		[ isMobile, profile, category, setHeroTrailer ]
+		[ windowWidth, profile, category, setHeroTrailer ]
 	);
 
 	const truncate = (string, length) => {
@@ -58,14 +58,14 @@ function HeroContainer({ profile }) {
 					setHeroTrailer={setHeroTrailer}
 				/>
 			)}
-			{banner.backdrop_path && !heroTrailer && <Hero.Banner src={banner.backdrop_path} />}
+			{banner.backdrop_path && !heroTrailer && <Hero.Banner src={banner.backdrop_path} windowWidth={windowWidth} />}
 			<Hero.Overlay fullOverlay={!heroTrailer} />
 			{banner.overview && (
 				<Hero.Details className={heroTrailer ? 'no-desc' : ''}>
 					<Hero.Title className={!heroTrailer ? 'title-small' : ''}>
 						{banner.name || banner.title || banner.original_name}
 					</Hero.Title>
-					{!heroTrailer && !isMobile && <Hero.Description>{truncate(banner.overview, 185)}</Hero.Description>}
+					{!heroTrailer && windowWidth > 600 && <Hero.Description>{truncate(banner.overview, 185)}</Hero.Description>}
 					<Hero.Button className="white-btn" onClick={() => setPlaying(banner)}>
 						<PlayArrowIcon /> <span>Play</span>
 					</Hero.Button>

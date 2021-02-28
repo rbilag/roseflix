@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { Dropdown as EpisodeDropdown } from '../../episode/styles/episode';
 
 export const Container = styled.div`
 	position: fixed;
@@ -39,6 +40,9 @@ export const Search = styled.div`
 		font-size: 1.5rem;
 		color: #fff;
 		cursor: pointer;
+		@media (max-width: 700px) {
+			font-size: 1rem;
+		}
 	}
 `;
 export const SearchInput = styled.input`
@@ -50,6 +54,11 @@ export const SearchInput = styled.input`
 	color: #fff;
 	outline: none;
 	transition: all 0.25s ease-out;
+	@media (max-width: 700px) {
+		padding: ${({ isActive }) => (isActive ? '0.35rem' : '0')};
+		width: ${({ isActive }) => (isActive ? '7.5rem' : '0')};
+		font-size: 0.75rem;
+	}
 `;
 export const NavLink = styled.a`
 	color: #fff;
@@ -68,6 +77,19 @@ export const NavLink = styled.a`
 	}
 `;
 
+export const NavDropdown = styled(EpisodeDropdown)`
+	font-size: 0.7rem;
+	background: transparent;
+	border: none;
+	font-weight: 500;
+	padding: 0;
+	min-width: unset;
+	option {
+		color: #fff;
+		background: black;
+	}
+`;
+
 export const Logo = styled.img`
 	width: 8rem;
 	margin: 0.5rem 2rem 0.5rem 3rem;
@@ -79,13 +101,13 @@ export const Logo = styled.img`
 		@media (max-width: 1000px) {
 			width: 10rem;
 		}
-		@media (max-width: 600px) {
+		@media (max-width: 700px) {
 			width: 8rem;
 		}
 	}
 
 	@media (max-width: 700px) {
-		width: 7rem;
+		width: 5rem;
 		margin: 0.5rem;
 	}
 `;
@@ -160,5 +182,9 @@ export const Dropdown = styled.div`
 		${Menu} {
 			${({ isOption }) => !isOption && `opacity: 1; pointer-events: auto;`};
 		}
+	}
+
+	@media (max-width: 700px) {
+		margin: 0 1rem 0 0.5rem;
 	}
 `;

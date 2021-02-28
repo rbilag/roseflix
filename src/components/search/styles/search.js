@@ -16,9 +16,16 @@ export const Row = styled(ShowRow)`
   }
 
   @media (max-width: 1000px) {
-    grid-template-columns: repeat(4,14rem);
+    grid-template-columns: repeat(4, 14rem);
     ${CardContainer} {
       margin-bottom: 2rem;
+    }
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 10.5rem);
+    padding: 5rem 2rem;
+    ${CardContainer} {
+      margin-bottom: 0;
     }
   }
 `;
@@ -28,5 +35,9 @@ export const NoMatch = styled.div`
 	line-height: 1.5;
 	p {
 		margin-bottom: 0.5rem;
+	}
+	@media (max-width: 600px) {
+		max-width: 15rem;
+		font-size: 0.8rem;
 	}
 `;

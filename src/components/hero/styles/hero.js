@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { IMAGE_BASE_URL, IMAGE_SIZES } from '../../../constants/config';
 
 export const Container = styled.div`
 	color: #fff;
@@ -70,8 +71,12 @@ export const Video = styled.div`
 export const Banner = styled.div`
 	width: 100%;
 	height: 100vh;
-	background: ${({ src }) =>
-		`linear-gradient(rgba(20,20,20,0) 60%, rgba(20,20,20,0.95)), url("https://image.tmdb.org/t/p/original/${src}") center`};
+	background: ${({ src, windowWidth }) =>
+		`linear-gradient(rgba(20,20,20,0) 60%, rgba(20,20,20,0.95)), url("${IMAGE_BASE_URL +
+			(windowWidth <= 600
+				? IMAGE_SIZES.backdrop.xmedium
+				: windowWidth <= 1000 ? IMAGE_SIZES.backdrop.medium : IMAGE_SIZES.backdrop.large) +
+			src}") center`};
 	background-size: cover;
 	z-index: 0;
 
@@ -130,7 +135,7 @@ export const Details = styled.div`
 	}
 	@media (max-width: 600px) {
 		padding-left: 1rem;
-		padding-bottom: 3rem;
+		padding-bottom: 2rem;
 	}
 `;
 export const Description = styled.div`

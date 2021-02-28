@@ -10,6 +10,7 @@ import {
 	Avatar,
 	Button,
 	Dropdown,
+	NavDropdown,
 	Menu,
 	MenuOption,
 	Search,
@@ -70,6 +71,17 @@ Header.NavLink = function HeaderNavLink({ children, ...restProps }) {
 	return <NavLink {...restProps}>{children}</NavLink>;
 };
 
+Header.NavDropdown = function EpisodeDropdown({ options, category, setCategory, ...restProps }) {
+	return (
+		<NavDropdown {...restProps} onChange={(e) => setCategory(e.target.value)} value={category}>
+			{options.map(({ title, value }) => (
+				<option key={`${value}_option`} value={value}>
+					{title}
+				</option>
+			))}
+		</NavDropdown>
+	);
+};
 Header.Dropdown = function HeaderDropdown({ children, ...restProps }) {
 	return <Dropdown {...restProps}>{children}</Dropdown>;
 };
