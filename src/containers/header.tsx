@@ -76,10 +76,10 @@ function HeaderContainer({
 		);
 	};
 
-	const handleChangeProfile = () => {
+	const handleChangeProfile = (profile?: Profile) => {
 		setSearchResult && setSearchResult();
 		setHeroTrailer && setHeroTrailer();
-		setProfile && setProfile();
+		setProfile && setProfile(profile);
 	};
 
 	return (
