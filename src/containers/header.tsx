@@ -15,15 +15,17 @@ type HeaderContainerType = {
 	setCategory?: (category: string) => void;
 	isHeaderShown?: boolean;
 	setSearchResult?: (results?: Array<ShowOverview> | null) => void;
+	setHeroTrailer?: (heroTrailer?: string | null | undefined) => void;
 };
 function HeaderContainer({
 	logoOnly,
 	profile,
 	setProfile,
-	category,
-	setCategory,
 	isHeaderShown,
-	setSearchResult
+	setSearchResult,
+	setHeroTrailer,
+	category,
+	setCategory
 }: HeaderContainerType) {
 	const { userDetails, setUserDetails } = useUser();
 	const [ searchTerm, setSearchTerm ] = useState('');
@@ -101,7 +103,14 @@ function HeaderContainer({
 												onClick={() => setProfile && setProfile(profile)}
 											/>
 										))}
-									<Header.MenuOption className="no-img" onClick={() => setProfile && setProfile()}>
+									<Header.MenuOption
+										className="no-img"
+										onClick={() => {
+											setSearchResult && setSearchResult();
+											setHeroTrailer && setHeroTrailer();
+											setProfile && setProfile();
+										}}
+									>
 										Manage Profiles
 									</Header.MenuOption>
 									<Header.MenuOption className="no-img" onClick={() => signout()}>

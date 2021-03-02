@@ -96,6 +96,7 @@ function Browse() {
 						category={category}
 						setCategory={setCategory}
 						setSearchResult={setSearchResult}
+						setHeroTrailer={setHeroTrailer}
 					/>
 					{searchResult ? (
 						<SearchContainer searchResult={searchResult} />
