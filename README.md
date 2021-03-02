@@ -5,7 +5,7 @@
 <br />
 <p align="center">
   <h1 align="center">Roseflix: A Netflix Clone</h1>
-  <img src="/images/readme/Main.png" alt="Roseflix Screenshot">
+  <img src="./public/images/readme/Main.png" alt="Roseflix Screenshot">
   <p align="center">
     My React.js implementation of Netflix. Movie data was pulled from TMDB and trailer videos from Youtube.
     <br /><br />
@@ -95,35 +95,35 @@ Install latest version of npm
 ## Usage
 **Creating an Account**
 
-![](/images/readme/Sign_Up.png)
+![](./public/images/readme/Sign_Up.png)
 1. Go to Sign Up page.
-  - From the homepage, enter your email and click 'Get Started'.
-  - From Sign In page, click the 'Sign up now' link below 'Sign In' button.
+    - From the homepage, enter your email and click 'Get Started'.
+    - From Sign In page, click the 'Sign up now' link below 'Sign In' button.
 2. Input the necessary fields. Don't worry. It won't take long.
-  - Both email and phone number has to be unique.
-  - Display name will be used to autogenerate initial user profile.
+    - Both email and phone number has to be unique.
+    - Display name will be used to autogenerate initial user profile.
 3. You'll be redirected to the login page. Enter your newly created credentials.
 
 
 
 **Logging In**
 
-![](/images/readme/Sign_In.png)
+![](./public/images/readme/Sign_In.png)
 1. Go to Sign In page.
-  - From the homepage, click 'Sign in' button.
-  - From Sign Up page, click the 'Sign in now' link below 'Sign Up' button.
+    - From the homepage, click 'Sign in' button.
+    - From Sign Up page, click the 'Sign in now' link below 'Sign Up' button.
 2. Input the necessary fields and proceed.
-  - You can sign in using either email or phone number.
+    - You can sign in using either email or phone number.
 
 
 
 **Searching for a Show**
 
-![](/images/readme/Search.png)
+![](./public/images/readme/Search.png)
 1. Log in and select a profile.
 2. Click the appropriate tab for your search.
-  - If searching for a movie, click 'Movies' tab in the header.
-  - If searching for a series, click 'TV Shows' tab in the header.
+    - If searching for a movie, click 'Movies' tab in the header.
+    - If searching for a series, click 'TV Shows' tab in the header.
 3. Click the search icon on the header.
 4. Input your search term and press enter.
 5. To show all shows again, clear the search input and press enter.
@@ -132,20 +132,20 @@ Install latest version of npm
 
 **Adding User Profile**
 
-![](/images/readme/Add_Profile.png)
+![](./public/images/readme/Add_Profile.png)
 1. Log in to your account.
 2. Click 'Manage Profiles'.
 3. Click 'Add Profile'.
-  - You can only add up to 5 profiles for each account.
+    - You can only add up to 5 profiles for each account.
 4. Click the pencil/edit icon and choose your preferred avatar.
 5. Enter your preferred display name and click 'Save'.
-  - You can't use avatars and names already used by other profiles in the same account.
+    - You can't use avatars and names already used by other profiles in the same account.
 
 
 
 **Editing User Profile**
 
-![](/images/readme/Edit_Profile.png)
+![](./public/images/readme/Edit_Profile.png)
 1. Log in to your account.
 2. Click 'Manage Profiles'.
 3. Click the profile you wish to edit.
@@ -155,7 +155,7 @@ Install latest version of npm
 
 **Deleting User Profile**
 
-![](/images/readme/Delete_Profile.png)
+![](./public/images/readme/Delete_Profile.png)
 1. Log in to your account.
 2. Click 'Manage Profiles'.
 3. Click the profile you wish to delete.
