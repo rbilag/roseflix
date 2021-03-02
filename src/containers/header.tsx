@@ -106,7 +106,7 @@ function HeaderContainer({
 											<Header.MenuOption
 												key={`${profile._id}_option`}
 												profile={profile}
-												onClick={() => handleChangeProfile()}
+												onClick={() => handleChangeProfile(profile)}
 											/>
 										))}
 									<Header.MenuOption className="no-img" onClick={() => handleChangeProfile()}>
