@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { Link as RouterLink } from 'react-router-dom';
+import { Spinner as LoadingSpinner } from '../../loading/styles/loading';
 
 export const Container = styled.div`
 	display: flex;
@@ -62,6 +63,19 @@ export const Button = styled.button`
 		background-color: #4e2022;
 		color: #969696;
 		cursor: default;
+	}
+`;
+export const Spinner = styled(LoadingSpinner)`
+	background: none;
+	width: 2rem;
+	height: 0;
+	margin-top: -0.15rem;
+	:after {
+		width: 1.5rem;
+		height: 1.5rem;
+		filter: grayscale(1);
+		margin-top: 0;
+		margin-left: 0;
 	}
 `;
 export const Text = styled.p`

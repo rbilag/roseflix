@@ -81,7 +81,13 @@ function Signin() {
 					/>
 					{passwordInvalid && <Form.Error>Please enter your password.</Form.Error>}
 					<Form.Button disabled={!canProceed || isLoading} type="submit">
-						{isLoading ? 'Signing in...' : 'Sign In'}
+						{isLoading ? (
+							<React.Fragment>
+								<Form.Spinner />Signing in...
+							</React.Fragment>
+						) : (
+							'Sign In'
+						)}
 					</Form.Button>
 				</Form.FormGroup>
 				<Form.Text>

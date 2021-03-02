@@ -127,7 +127,13 @@ function Signup() {
 					/>
 					{passwordInvalid && <Form.Error>Your password must contain between 4 and 60 characters.</Form.Error>}
 					<Form.Button disabled={!canProceed || isLoading} type="submit">
-						{isLoading ? 'Signing up...' : 'Sign Up'}
+						{isLoading ? (
+							<React.Fragment>
+								<Form.Spinner />Signing up...
+							</React.Fragment>
+						) : (
+							'Sign Up'
+						)}
 					</Form.Button>
 				</Form.FormGroup>
 				<Form.Text>

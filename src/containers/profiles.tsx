@@ -144,7 +144,7 @@ function ProfilesContainer({ userDetails, setProfile }: ProfilesContainerType) {
 										onClick={() => handleSave()}
 										disabled={
 											!editingUser.name ||
-											editingUser.avatar === 'placeholder.png' ||
+											editingUser.avatar === 'Placeholder.png' ||
 											(!editingUser._id && usedNames.includes(editingUser.name))
 										}
 									>
@@ -198,12 +198,12 @@ function ProfilesContainer({ userDetails, setProfile }: ProfilesContainerType) {
 									<Profiles.User
 										className="add-profile"
 										onClick={() => {
-											setEditingUser({ avatar: 'placeholder.png', name: '' });
+											setEditingUser({ avatar: 'Placeholder.png', name: '' });
 											setRender({ type: 'edit_details', args: {} });
 										}}
 									>
 										<Profiles.AvatarEditOverlay isAdd />
-										<Profiles.Avatar src="placeholder.png" />
+										<Profiles.Avatar src="Placeholder.png" />
 										<Profiles.Name>Add Profile</Profiles.Name>
 									</Profiles.User>
 								)}

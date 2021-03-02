@@ -1,6 +1,18 @@
 import React from 'react';
 import { ComponentProp } from '../../constants/types';
-import { Container, Inner, Title, FormGroup, Input, Button, Text, TextSmall, Link, Error } from './styles/form';
+import {
+	Container,
+	Inner,
+	Title,
+	FormGroup,
+	Input,
+	Button,
+	Text,
+	TextSmall,
+	Link,
+	Error,
+	Spinner
+} from './styles/form';
 
 function Form({ children, ...restProps }: ComponentProp) {
 	return (
@@ -43,6 +55,10 @@ Form.Link = function FormLink({ children, to, ...restProps }: ComponentProp) {
 
 Form.Error = function FormError({ children, ...restProps }: ComponentProp) {
 	return <Error {...restProps}>{children}</Error>;
+};
+
+Form.Spinner = function FormSpinner({ ...restProps }: ComponentProp) {
+	return <Spinner {...restProps} />;
 };
 
 export default Form;
