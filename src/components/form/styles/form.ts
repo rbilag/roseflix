@@ -73,7 +73,7 @@ export const Spinner = styled(LoadingSpinner)`
 	:after {
 		width: 1.5rem;
 		height: 1.5rem;
-		filter: grayscale(1);
+    filter: contrast(0) brightness(1.75);
 		margin-top: 0;
 		margin-left: 0;
 	}

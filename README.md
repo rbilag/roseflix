@@ -20,6 +20,10 @@
 
 
 
+
+
+
+
 <h2 style="display: inline-block">Table of Contents</h2>
 <ol>
   <li>
@@ -42,6 +46,10 @@
 
 
 
+
+
+
+
 ## About The Project
 
 ### Built With
@@ -49,6 +57,12 @@
 * **[Typescript](https://www.typescriptlang.org/)**
 * [Node.js](https://nodejs.org/en/)
 * [MongoDB](https://www.mongodb.com/)
+
+
+
+
+
+
 
 
 ## Getting Started
@@ -81,13 +95,17 @@ Install latest version of npm
    git clone https://github.com/rosebilag/roseflix-backend
    ```
 6. You should now have the server running locally. Add the url to your .env
-  ```sh
-  REACT_APP_SERVER_URL=http://localhost:8080
-  ```
+   ```sh
+   REACT_APP_SERVER_URL=http://localhost:8080
+   ```
 7. Start the application
    ```sh
    npm start
    ```
+
+
+
+
 
 
 
@@ -106,6 +124,7 @@ Install latest version of npm
 
 
 
+
 **Logging In**
 
 ![](./public/images/readme/Sign_In.png)
@@ -114,6 +133,7 @@ Install latest version of npm
     - From Sign Up page, click the 'Sign in now' link below 'Sign Up' button.
 2. Input the necessary fields and proceed.
     - You can sign in using either email or phone number.
+
 
 
 
@@ -130,6 +150,7 @@ Install latest version of npm
 
 
 
+
 **Adding User Profile**
 
 ![](./public/images/readme/Add_Profile.png)
@@ -143,6 +164,7 @@ Install latest version of npm
 
 
 
+
 **Editing User Profile**
 
 ![](./public/images/readme/Edit_Profile.png)
@@ -150,6 +172,7 @@ Install latest version of npm
 2. Click 'Manage Profiles'.
 3. Click the profile you wish to edit.
 4. Modify the profile as you see fit and click 'Save'.
+
 
 
 
@@ -161,6 +184,12 @@ Install latest version of npm
 3. Click the profile you wish to delete.
 4. Click 'Delete Profile'.
 5. Confirm deletion by clicking 'Yes'.
+
+
+
+
+
+
 
 
 
