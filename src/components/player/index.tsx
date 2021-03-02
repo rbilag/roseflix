@@ -32,7 +32,7 @@ Player.Video = function PlayerVideo({ setIsPaused, ...restProps }: ComponentProp
 	return (
 		<Video {...restProps}>
 			<ReactPlayer
-				url="/videos/cinematic_v2.m4v"
+				url="/videos/cinematic.m4v"
 				className="playing-video"
 				width="100%"
 				height="100%"

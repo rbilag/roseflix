@@ -6,7 +6,6 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((req) => {
-	console.log(`${req.method} ${req.url}`);
 	if (req.url !== ROUTES.HOME.path && req.url !== ROUTES.SIGNIN.path && req.url !== ROUTES.SIGNUP.path) {
 		req.headers = { ...req.headers, Authorization: `Basic ${localStorage.getItem('roseflix-auth')}` };
 	}

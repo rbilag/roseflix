@@ -28,8 +28,6 @@ function EpisodeContainer({ openId, seasons }: EpisodeContainerType) {
 		return string.length > length ? string.substr(0, length - 1) + '...' : string;
 	};
 
-	console.log(episodes);
-
 	return (
 		<Episode.Container>
 			<Episode.Header>
