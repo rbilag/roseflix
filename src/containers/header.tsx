@@ -76,6 +76,12 @@ function HeaderContainer({
 		);
 	};
 
+	const handleChangeProfile = () => {
+		setSearchResult && setSearchResult();
+		setHeroTrailer && setHeroTrailer();
+		setProfile && setProfile();
+	};
+
 	return (
 		<Header className={isHeaderShown ? 'opaque' : ''}>
 			<Header.Panel>
@@ -100,17 +106,10 @@ function HeaderContainer({
 											<Header.MenuOption
 												key={`${profile._id}_option`}
 												profile={profile}
-												onClick={() => setProfile && setProfile(profile)}
+												onClick={() => handleChangeProfile()}
 											/>
 										))}
-									<Header.MenuOption
-										className="no-img"
-										onClick={() => {
-											setSearchResult && setSearchResult();
-											setHeroTrailer && setHeroTrailer();
-											setProfile && setProfile();
-										}}
-									>
+									<Header.MenuOption className="no-img" onClick={() => handleChangeProfile()}>
 										Manage Profiles
 									</Header.MenuOption>
 									<Header.MenuOption className="no-img" onClick={() => signout()}>
