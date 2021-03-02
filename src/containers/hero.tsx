@@ -74,7 +74,13 @@ function HeroContainer({ profile }: HeroContainerType) {
 							</Hero.Title>
 							{!heroTrailer &&
 							windowWidth > 600 && <Hero.Description>{truncate(banner.overview, 185)}</Hero.Description>}
-							<Hero.Button className="white-btn" onClick={() => setPlaying(banner)}>
+							<Hero.Button
+								className="white-btn"
+								onClick={() => {
+									setHeroTrailer();
+									setPlaying(banner);
+								}}
+							>
 								<PlayArrowIcon /> <span>Play</span>
 							</Hero.Button>
 							<Hero.Button

@@ -188,6 +188,12 @@ export const Avatar = styled.img`
 export const Dropdown = styled.div`
 	margin: 0 3.5rem 0 1.5rem;
 	cursor: pointer;
+	&:hover {
+		${Menu} {
+			opacity: 1;
+			pointer-events: auto;
+		}
+	}
 
 	@media (max-width: 700px) {
 		margin: 0 1rem 0 0.5rem;

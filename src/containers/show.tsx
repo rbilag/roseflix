@@ -17,9 +17,9 @@ function ShowContainer({ section, show }: ShowContainerType) {
 		detailsTrailer: { setDetailsTrailer },
 		trailerDisplayed: { trailerDisplayed, setTrailerDisplayed },
 		heroTrailer: { setHeroTrailer },
+		isMuted: { isMuted, setIsMuted },
 		genres: { genres }
 	} = usePlayer();
-	const [ isMuted, setIsMuted ] = useState(true);
 	const showPoster =
 		(trailerDisplayed &&
 			((trailerDisplayed.id === show.id.toString() && trailerDisplayed.header !== section.title) ||

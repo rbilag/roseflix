@@ -79,7 +79,7 @@ function HeaderContainer({
 			<Header.Panel>
 				<Header.Logo
 					className={!userDetails ? 'large' : ''}
-					src="/images/branding/Netflix_Logo_RGB.png"
+					src="/images/branding/Roseflix_Logo.png"
 					alt="Roseflix Logo"
 					to={ROUTES.HOME.path}
 				/>

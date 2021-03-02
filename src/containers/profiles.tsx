@@ -101,7 +101,7 @@ function ProfilesContainer({ userDetails, setProfile }: ProfilesContainerType) {
 						<Profiles.AvatarHeader>
 							<Profiles.AvatarHeaderPanel className="profile-title">
 								<Profiles.AvatarHeaderPanel>
-									<ArrowBackIcon />
+									<ArrowBackIcon onClick={() => setRender({ type: 'edit_details', args: {} })} />
 								</Profiles.AvatarHeaderPanel>
 								<Profiles.AvatarHeaderPanel>
 									<Profiles.Title>Edit Profile</Profiles.Title>
