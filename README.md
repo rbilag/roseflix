@@ -9,7 +9,7 @@
   <p align="center">
     My React.js implementation of Netflix. Movie data was pulled from TMDB and trailer videos from Youtube.
     <br /><br />
-    <a href="https://roseflix.netlify.app"><strong>View Demo »</strong></a>
+    <a href="https://roseflix-rosebilag.vercel.app"><strong>View Demo »</strong></a>
     <br /><br />
     <a href="https://github.com/rosebilag/roseflix/issues">Report Bug</a>
     ·
