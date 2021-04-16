@@ -1,0 +1,281 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Accordion /> opens and closes the <Accordion /> component 1`] = `
+<div
+  class="accordion__Container-sc-11jpbmb-0 iKHJax"
+>
+  <div
+    class="accordion__Inner-sc-11jpbmb-2 kjxBzO"
+  >
+    <h1
+      class="accordion__Title-sc-11jpbmb-1 kziJvb"
+    >
+      Frequently Asked Questions
+    </h1>
+    <div
+      class="accordion__Item-sc-11jpbmb-3 bTuqNX"
+    >
+      <div
+        class="accordion__Header-sc-11jpbmb-4 cLROnR"
+      >
+        What is Roseflix?
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+      </div>
+      <div
+        class="accordion__Body-sc-11jpbmb-5 cnhtEn"
+      >
+        Roseflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries and more on thousands of internet-connected devices.
+
+You can watch as much as you want, whenever you want, without a single commercial – all for one low monthly price. There's always something new to discover, and new TV shows and movies are added every week!
+      </div>
+    </div>
+    <div
+      class="accordion__Item-sc-11jpbmb-3 bTuqNX"
+    >
+      <div
+        class="accordion__Header-sc-11jpbmb-4 cLROnR"
+      >
+        How much does Roseflix cost?
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+      </div>
+      <div
+        class="accordion__Body-sc-11jpbmb-5 cnhtEn"
+      >
+        Watch Roseflix on your smartphone, tablet, Smart TV, laptop or streaming device, all for one fixed monthly fee. Plans range from ₱149 to ₱549 a month. No extra costs, no contracts.
+      </div>
+    </div>
+    <div
+      class="accordion__Item-sc-11jpbmb-3 bTuqNX"
+    >
+      <div
+        class="accordion__Header-sc-11jpbmb-4 cLROnR"
+      >
+        Where can I watch?
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+      </div>
+      <div
+        class="accordion__Body-sc-11jpbmb-5 cnhtEn"
+      >
+        Watch anywhere, anytime, on an unlimited number of devices. Sign in with your Roseflix account to watch instantly on the web at roseflix.com from your personal computer or on any internet-connected device that offers the Roseflix app, including smart TVs, smartphones, tablets, streaming media players and game consoles.
+
+You can also download your favourite shows with the iOS, Android, or Windows 10 app. Use downloads to watch while you're on the go and without an internet connection. Take Roseflix with you anywhere.
+      </div>
+    </div>
+    <div
+      class="accordion__Item-sc-11jpbmb-3 bTuqNX"
+    >
+      <div
+        class="accordion__Header-sc-11jpbmb-4 cLROnR"
+      >
+        How do I cancel?
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+      </div>
+      <div
+        class="accordion__Body-sc-11jpbmb-5 cnhtEn"
+      >
+        Roseflix is flexible. There are no pesky contracts and no commitments. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account anytime.
+      </div>
+    </div>
+    <div
+      class="accordion__Item-sc-11jpbmb-3 bTuqNX"
+    >
+      <div
+        class="accordion__Header-sc-11jpbmb-4 cLROnR"
+      >
+        What can I watch on Roseflix?
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+      </div>
+      <div
+        class="accordion__Body-sc-11jpbmb-5 cnhtEn"
+      >
+        Roseflix has an extensive library of feature films, documentaries, TV shows, anime, award-winning Roseflix originals, and more. Watch as much as you want, any time you want.
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Accordion /> renders the <Accordion /> with populated data 1`] = `
+<div
+  class="accordion__Container-sc-11jpbmb-0 iKHJax"
+>
+  <div
+    class="accordion__Inner-sc-11jpbmb-2 kjxBzO"
+  >
+    <h1
+      class="accordion__Title-sc-11jpbmb-1 kziJvb"
+    >
+      Frequently Asked Questions
+    </h1>
+    <div
+      class="accordion__Item-sc-11jpbmb-3 bTuqNX"
+    >
+      <div
+        class="accordion__Header-sc-11jpbmb-4 cLROnR"
+      >
+        What is Roseflix?
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+      </div>
+      <div
+        class="accordion__Body-sc-11jpbmb-5 cnhtEn"
+      >
+        Roseflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries and more on thousands of internet-connected devices.
+
+You can watch as much as you want, whenever you want, without a single commercial – all for one low monthly price. There's always something new to discover, and new TV shows and movies are added every week!
+      </div>
+    </div>
+    <div
+      class="accordion__Item-sc-11jpbmb-3 bTuqNX"
+    >
+      <div
+        class="accordion__Header-sc-11jpbmb-4 cLROnR"
+      >
+        How much does Roseflix cost?
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+      </div>
+      <div
+        class="accordion__Body-sc-11jpbmb-5 cnhtEn"
+      >
+        Watch Roseflix on your smartphone, tablet, Smart TV, laptop or streaming device, all for one fixed monthly fee. Plans range from ₱149 to ₱549 a month. No extra costs, no contracts.
+      </div>
+    </div>
+    <div
+      class="accordion__Item-sc-11jpbmb-3 bTuqNX"
+    >
+      <div
+        class="accordion__Header-sc-11jpbmb-4 cLROnR"
+      >
+        Where can I watch?
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+      </div>
+      <div
+        class="accordion__Body-sc-11jpbmb-5 cnhtEn"
+      >
+        Watch anywhere, anytime, on an unlimited number of devices. Sign in with your Roseflix account to watch instantly on the web at roseflix.com from your personal computer or on any internet-connected device that offers the Roseflix app, including smart TVs, smartphones, tablets, streaming media players and game consoles.
+
+You can also download your favourite shows with the iOS, Android, or Windows 10 app. Use downloads to watch while you're on the go and without an internet connection. Take Roseflix with you anywhere.
+      </div>
+    </div>
+    <div
+      class="accordion__Item-sc-11jpbmb-3 bTuqNX"
+    >
+      <div
+        class="accordion__Header-sc-11jpbmb-4 cLROnR"
+      >
+        How do I cancel?
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+      </div>
+      <div
+        class="accordion__Body-sc-11jpbmb-5 cnhtEn"
+      >
+        Roseflix is flexible. There are no pesky contracts and no commitments. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account anytime.
+      </div>
+    </div>
+    <div
+      class="accordion__Item-sc-11jpbmb-3 bTuqNX"
+    >
+      <div
+        class="accordion__Header-sc-11jpbmb-4 cLROnR"
+      >
+        What can I watch on Roseflix?
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+      </div>
+      <div
+        class="accordion__Body-sc-11jpbmb-5 cnhtEn"
+      >
+        Roseflix has an extensive library of feature films, documentaries, TV shows, anime, award-winning Roseflix originals, and more. Watch as much as you want, any time you want.
+      </div>
+    </div>
+  </div>
+</div>
+`;
